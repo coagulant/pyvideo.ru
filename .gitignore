@@ -1,0 +1,6 @@
+.idea
+venv
+*.pyc
+richard
+database.db
+whoosh_index

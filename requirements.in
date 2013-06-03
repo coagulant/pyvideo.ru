@@ -1,0 +1,19 @@
+# Richard tip with dependencies
+https://github.com/coagulant/richard/zipball/575966f71d5a1f7ea0d7733c205a8361005d7e01#egg=richard
+django==1.4.5
+django-haystack==2.0.0
+Jinja2
+whoosh
+bleach
+requests
+markdown
+south
+eadred
+https://github.com/mozilla/django-browserid/zipball/afdf3408c1#egg=django-browserid
+https://github.com/jbalogh/jingo/zipball/master#egg=jingo
+https://github.com/toastdriven/django-tastypie/zipball/5e8850434ef1c8672b0a22953bd7cc0def6347f8#egg=django-tastypie
+
+# Heroku
+psycopg2
+gunicorn
+dj-database-url
