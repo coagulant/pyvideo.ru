@@ -14,12 +14,12 @@ ROOT_URLCONF = 'pyvideo.urls'
 WSGI_APPLICATION = 'pyvideo.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(ROOT, 'templates'),
+    os.path.join(PROJECT_PATH, 'templates'),
 )
 
 STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 
-INSTALLED_APPS = INSTALLED_APPS + (
+INSTALLED_APPS += (
     'raven.contrib.django.raven_compat',
 )
 
@@ -27,5 +27,5 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'database.db',
+        }
     }
-}
