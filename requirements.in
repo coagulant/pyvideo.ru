@@ -17,3 +17,4 @@ https://github.com/toastdriven/django-tastypie/zipball/5e8850434ef1c8672b0a22953
 psycopg2
 gunicorn
 dj-database-url
+raven>=3
