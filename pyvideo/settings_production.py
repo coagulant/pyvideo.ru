@@ -20,4 +20,4 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
-SITE_URL = 'http://pyvideoru.herokuapp.com'
+SITE_URL = os.environ.get('SITE_URL')
