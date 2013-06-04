@@ -3,7 +3,7 @@
 django==1.4.5
 django-haystack==2.0.0
 Jinja2
-whoosh
+pyelasticsearch
 bleach
 requests
 markdown
