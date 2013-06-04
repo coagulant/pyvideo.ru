@@ -20,4 +20,4 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
-SITE_URL = 'http://pyvideo.herokuapp.com'
+SITE_URL = 'http://pyvideoru.herokuapp.com'
