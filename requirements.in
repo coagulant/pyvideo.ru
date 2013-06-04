@@ -1,5 +1,5 @@
 # Richard tip with dependencies
-https://github.com/coagulant/richard/zipball/575966f71d5a1f7ea0d7733c205a8361005d7e01#egg=richard
+-e git+https://github.com/coagulant/richard@41b6733a506d1e6b6a1d34e9caf00686b0ea8643#egg=richard
 django==1.4.5
 django-haystack==2.0.0
 Jinja2
