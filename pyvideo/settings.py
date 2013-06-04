@@ -1,7 +1,7 @@
 # Django settings for pyvideo project.
 from richard.settings import *
 
-ALLOWED_HOSTS = ['pyvideo.ru']
+ALLOWED_HOSTS = ['pyvideo.ru', 'pyvideoru.herokuapp.com']
 TIME_ZONE = 'Europe/Moscow'
 LANGUAGE_CODE = 'ru'
 SECRET_KEY = 'this_is_not_production_so_who_cares'
