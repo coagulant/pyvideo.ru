@@ -19,3 +19,5 @@ HAYSTACK_CONNECTIONS = {
         'INDEX_NAME': 'pyvideo',
     },
 }
+
+SITE_URL = 'http://pyvideo.herokuapp.com'
