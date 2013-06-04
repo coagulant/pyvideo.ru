@@ -1,5 +1,5 @@
 # Richard tip with dependencies
--e git+https://github.com/coagulant/richard@41b6733a506d1e6b6a1d34e9caf00686b0ea8643#egg=richard
+-e git+https://github.com/coagulant/richard@86b723d20d219e33498cd87263f932e2eff56d98#egg=richard
 django==1.4.5
 django-haystack==2.0.0
 Jinja2
