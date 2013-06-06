@@ -4,7 +4,7 @@ from richard.settings import *
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 
-ALLOWED_HOSTS = ['pyvideo.ru', 'pyvideoru.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['*.pyvideo.ru', 'pyvideoru.herokuapp.com', '127.0.0.1',]
 TIME_ZONE = 'Europe/Moscow'
 LANGUAGE_CODE = 'ru'
 SECRET_KEY = 'this_is_not_production_so_who_cares'
