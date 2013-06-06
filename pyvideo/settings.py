@@ -29,3 +29,5 @@ DATABASES = {
         'NAME': 'database.db',
         }
     }
+
+API = True
