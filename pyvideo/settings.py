@@ -26,7 +26,9 @@ STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 INSTALLED_APPS = (
     'raven.contrib.django.raven_compat',
     'suit',
-) + INSTALLED_APPS
+) + INSTALLED_APPS + (
+    'sergey',
+)
 
 DATABASES = {
     'default': {
