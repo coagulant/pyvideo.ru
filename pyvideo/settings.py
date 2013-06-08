@@ -38,3 +38,6 @@ DATABASES = {
 }
 
 API = True
+SUIT_CONFIG = {
+    'LIST_PER_PAGE': 100
+}
