@@ -21,6 +21,8 @@ admin.site.register(Speaker, SpeakerAdmin)
 
 class PyVideoAdmin(VideoAdmin):
     list_display = ('title', 'category', 'speakers_string', 'whiteboard', 'state')
+    search_fields = ('title', 'slug')
+    ordering = ('-updated',)
 
     def speakers_string(self, obj):
         return u', '.join(obj.speakers.values_list('name', flat=True))
