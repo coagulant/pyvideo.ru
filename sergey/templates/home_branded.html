@@ -22,16 +22,17 @@
 <div class="row">
   <div class="span12">
     {% block contenthero %}
-      <div class="hero-unit">
-        <h1>{{ settings.SITE_TITLE }}</h1>
-        <p>
-          This site indexes videos that exist in various places and makes them easier to find.
-          {{ video_count }} video{{ 's' if video_count != 1 else '' }} so far.
-        </p>
-        <p>
-          <a class="btn btn-primary btn-large" href="{{ url('pages-page', page='about') }}">Learn more</a>
-        </p>
-      </div>
+    <div class="hero-unit">
+      <h1>Видео о python на русском</h1>
+      <p>
+          Собрание видеозаписей докладов и лекций про Python.<br>
+          В основном на <strong>русском языке</strong>, но для PyConRU и PyConUA сделано исключение.
+      </p>
+      <p>
+          Уже собрали {{ video_count }} видео, присылайте ещё.<br>
+          <!--Более тысячи видео на английском на <a href="http://pyvideo.org">pyvideo.org</a>-->
+      </p>
+    </div>
     {% endblock %}
 
     <div class="row section">
