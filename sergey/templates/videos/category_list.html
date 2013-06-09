@@ -43,7 +43,7 @@
             </td>
             <td>
               {% if cat.start_date %}
-                {{ cat.start_date|datetime }}
+                {{ cat.start_date|datetime('%d.%m.%Y')}}
               {% else %}
                 &nbsp;
               {% endif %}

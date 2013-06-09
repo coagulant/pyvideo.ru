@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 
 from richard.urls import urlpatterns
 from richard.videos.sitemaps import CategorySitemap, SpeakerSitemap, VideoSitemap
+from sergey.views import SpeakerList
 
 
 sitemaps = {
@@ -21,6 +22,7 @@ urlpatterns = patterns('',
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^pages/', include('richard.pages.urls')),
+    url(r'^speaker/$', SpeakerList.as_view(), name='videos-speaker-list'),
     url(r'', include('richard.videos.urls')),
     url(r'^browserid/', include('django_browserid.urls')),
 )
