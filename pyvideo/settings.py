@@ -22,7 +22,7 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 JINGO_EXCLUDE_APPS += (
     'suit',
 )
-STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
+STATIC_ROOT = os.path.join(PROJECT_PATH, '../sergey/static')
 
 INSTALLED_APPS = (
     'raven.contrib.django.raven_compat',

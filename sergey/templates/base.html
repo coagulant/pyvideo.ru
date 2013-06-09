@@ -20,6 +20,7 @@
 <head>
   <link rel="stylesheet" href="{{ settings.STATIC_URL }}bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/richard.css">
+  <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/social.css">
   <link rel="search" type="application/opensearchdescription+xml" title="{{ settings.SITE_TITLE }} search" href="{{ url('videos-opensearch') }}">
   <title>{% block title %}{{ page_title() }}{% endblock %}</title>
 {% if meta %}
@@ -71,8 +72,23 @@
     {% block content %}{% endblock %}
 
     <div id="footer">
-      This site is powered by
-      <a href="http://github.com/willkg/richard">richard</a>.
+        <ul class="social-likes">
+            <li class="github" title="Fork me on GitHub">GitHub</li>
+            <li class="facebook" title="Share link on Facebook">Facebook</li>
+            <li class="twitter" data-via="coagulant" title="Share link on Twitter">Twitter</li>
+            <li class="plusone" title="Share link on Google+">Google+</li>
+        </ul>
+            <script>
+                var socialLikesButtons = {
+                    github: {
+                        counterUrl: 'https://api.github.com/repos/coagulant/pyvideo.ru?callback=?',
+                        convertNumber: function(data) {
+                            return data.data.watchers_count;
+                        },
+                        clickUrl: 'https://github.com/coagulant/pyvideo.ru'
+                    }
+                };
+            </script>
     </div>
   </div>
 
@@ -82,6 +98,7 @@
   {% block site_js %}
   <script type="text/javascript" src="{{ settings.STATIC_URL }}js/jquery-1.7.2.min.js"></script>
   <script type="text/javascript" src="{{ settings.STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{{ settings.STATIC_URL }}js/social.js"></script>
     {% if not settings.BROWSERID_AUTOLOGIN %}
       <script type="text/javascript" src="{{ settings.STATIC_URL }}browserid/browserid.js"></script>
       <script type="text/javascript" src="https://login.persona.org/include.js"></script>
