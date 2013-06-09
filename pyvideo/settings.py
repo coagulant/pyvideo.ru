@@ -42,3 +42,5 @@ API = True
 SUIT_CONFIG = {
     'LIST_PER_PAGE': 100
 }
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/admin/'

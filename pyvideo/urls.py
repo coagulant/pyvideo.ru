@@ -2,6 +2,7 @@ from django.conf.urls import patterns, url, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.views.generic import TemplateView
 
 from richard.urls import urlpatterns
 from richard.videos.sitemaps import CategorySitemap, SpeakerSitemap, VideoSitemap
@@ -15,8 +16,8 @@ sitemaps = {
 
 urlpatterns = patterns('',
     url(r'^$', 'richard.base.views.home', name='home'),
-    url(r'^login-failure$', 'richard.base.views.login_failure',
-        name='login_failure'),
+    url(r'^login/$', TemplateView.as_view(template_name='login.html'), name='login'),
+    url(r'^login-failure$', 'richard.base.views.login_failure', name='login_failure'),
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^pages/', include('richard.pages.urls')),
