@@ -1,0 +1,99 @@
+{#
+# Copyright (C) 2013 Ilya Baryshev
+# richard -- video index system
+# Copyright (C) 2012, 2013 richard contributors.  See AUTHORS.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-#}
+{% extends "base.html" %}
+{% block title %}
+  {% if query %}
+    {{ page_title('Search: ' + query) }}
+  {% else %}
+    {{ page_title('Search') }}
+  {% endif %}
+{% endblock %}
+{% import "videos/macros.html" as macros with context %}
+{% block content %}
+
+<div class="row">
+  <div class="span12">
+    <form class="well form-search" method="get" action="/search/">
+      <input type="hidden" name="models" value="videos.video">
+      <input type="text" class="input-xxlarge search-query" name="q" value="{{ query }}">
+      <button type="submit" class="btn btn-primary">Найти</button>
+    </form>
+  </div>
+</div>
+
+{% if query %}
+  {% if page %}
+    <div class="row">
+      <div class="span3">
+        <div>
+          {% if facet_counts %}
+            <ul class="nav nav-list">
+              <li class="nav-header">События</li>
+              {% for title, count in facet_counts['category'] %}
+                <li>
+                    <a href="{{ request.build_absolute_uri() }}&amp;category={{ title }}">{{ title }}
+                        <span class="label label-info">{{ count }}</span>
+                    </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+      <div class="span9">
+        <div class="row"><div class="span12">
+        {% for result in page.object_list %}
+          {{ macros.video_summary(result.object, false, true) }}
+        {% endfor %}
+        </div></div>
+      </div>
+    </div>
+  {% else %}
+    <div class="row">
+      <div class="span12">
+        <h2>Ничего не найдено</h2>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if page.has_previous() or page.has_next() %}
+    <div class="row">
+      <div class="span12 centered">
+        <div class="pager">
+          <ul>
+            {% if page.has_previous() %}
+              <li><a href="?q={{ query }}&amp;page={{ page.previous_page_number() }}">&laquo; Previous</a></li>
+            {% else %}
+              <li class="disabled"><a>&laquo;Previous</a></li>
+            {% endif %}
+			
+            {% if page.has_next() %}
+              <li><a href="?q={{ query }}&amp;page={{ page.next_page_number() }}"> Next &raquo;</a></li>
+            {% else %}
+              <li class="disabled"><a>Next&raquo;</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% else %}
+  {# Show some example queries to run, maybe query syntax, something else? #}
+{% endif %}    
+{% endblock %}
