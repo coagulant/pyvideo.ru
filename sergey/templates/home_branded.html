@@ -1,0 +1,85 @@
+{#
+# Copyright (C) 2013 Ilya Baryshev
+# richard -- video index system
+# Copyright (C) 2012, 2013 richard contributors.  See AUTHORS.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-#}
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+  <div class="span12">
+    {% block contenthero %}
+      <div class="hero-unit">
+        <h1>{{ settings.SITE_TITLE }}</h1>
+        <p>
+          This site indexes videos that exist in various places and makes them easier to find.
+          {{ video_count }} video{{ 's' if video_count != 1 else '' }} so far.
+        </p>
+        <p>
+          <a class="btn btn-primary btn-large" href="{{ url('pages-page', page='about') }}">Learn more</a>
+        </p>
+      </div>
+    {% endblock %}
+
+    <div class="row section">
+      <div class="span6">
+        <h3>События
+          <small><a class="feed" href="{{ url('videos-category-feed') }}"></a></small>
+        </h3>
+
+        {% if latest_categories %}
+          <ul>
+            {% for cat in latest_categories %}
+              {% if user.is_staff or cat.video_set.live().count() > 0 %}
+                <li>
+                  <a href="{{ cat.get_absolute_url() }}">{{ cat.title }}</a>
+                  ({{ cat.video_set.live().count() }})
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if latest_categories|length > 10 %}
+        <p>
+          <a href="{{ url('videos-category-list') }}">See all categories...</a>
+        </p>
+        {% endif %}
+      </div>
+
+      <div class="span6">
+        <h3>Последние видеозаписи
+          <small><a class="feed" href="{{ url('videos-new-feed') }}"></a></small>
+        </h3>
+
+        {% if latest_videos %}
+          <ul>
+            {% for video in latest_videos %}
+              <li>
+                <a href="{{ video.get_absolute_url() }}">{{ video.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        <p>
+          <a href="{{ url('videos-search') }}">Далее...</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

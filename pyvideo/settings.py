@@ -28,8 +28,7 @@ INSTALLED_APPS = (
     'raven.contrib.django.raven_compat',
     'suit',
     'sergey',
-) + INSTALLED_APPS + (
-)
+) + INSTALLED_APPS
 
 DATABASES = {
     'default': {
