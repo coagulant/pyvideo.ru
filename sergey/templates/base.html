@@ -1,0 +1,119 @@
+{#
+# richard -- video index system
+# Copyright (C) 2012, 2013 richard contributors.  See AUTHORS.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-#}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{{ settings.STATIC_URL }}bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/richard.css">
+  <link rel="search" type="application/opensearchdescription+xml" title="{{ settings.SITE_TITLE }} search" href="{{ url('videos-opensearch') }}">
+  <title>{% block title %}{{ page_title() }}{% endblock %}</title>
+{% if meta %}
+  {% for meta_name, meta_content in meta %}
+    <meta name="{{ meta_name }}" content="{{ meta_content }}">
+  {% endfor %}
+{% endif %}
+  {% block additional_head %}{% endblock %}
+</head>
+<body>
+  {{ browserid_info()|safe }}
+  <div class="navbar navbar-inverse">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="{{ url('home') }}">{{ settings.SITE_TITLE }}</a>
+        <ul class="nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Browse <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ url('videos-category-list') }}">Categories</a></li>
+              <li><a href="{{ url('videos-speaker-list') }}">Speakers</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="navbar-search pull-left" action="{{ url('videos-search') }}">
+          <input type="hidden" name="models" value="videos.video">
+          <input type="text" class="search-query span2" name="q" placeholder="Search" value="{{ query }}">
+        </form>
+
+        <ul class="nav pull-right">
+          <li><a href="{{ url('pages-page', page='about') }}">About</a></li>
+
+          {% if user.is_authenticated() %}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Greetings {{ user.username }}! <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                {% if user.is_superuser %}
+                  <li><a href="{{ url('admin:index') }}">Admin</a></li>
+                {% endif %}
+                <li>{{ browserid_logout(text='Sign out')|safe }}</li>
+              </ul>
+            </li>
+          {% else %}
+            <li>{{ browserid_login(text='Sign in')|safe }}</li>
+
+          {% endif %}
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="content" class="container">
+  {% if notifications -%}
+    <div class="row">
+      <div class="span12">
+    {% for n in notifications -%}
+      <div class="alert alert-info">
+        <i class="icon-info-sign"></i> <strong>{{ n.interjection }}</strong>
+        {{ n.text|md }}
+      </div>
+    {%- endfor %}
+      </div>
+    </div>
+  {%- endif %}
+
+    {# TODO: messages #}
+    {# TODO: breadcrumbs #}
+
+    {% block content %}{% endblock %}
+
+    <div id="footer">
+      This site is powered by
+      <a href="http://github.com/willkg/richard">richard</a>.
+    </div>
+  </div>
+
+  {% block additional_body %}
+  {% endblock %}
+
+  {% block site_js %}
+  <script type="text/javascript" src="{{ settings.STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript" src="{{ settings.STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+    {% if not settings.BROWSERID_AUTOLOGIN %}
+      <script type="text/javascript" src="{{ settings.STATIC_URL }}browserid/browserid.js"></script>
+      <script type="text/javascript" src="https://login.persona.org/include.js"></script>
+    {% else %}
+      <script type="text/javascript" src="{{ settings.STATIC_URL }}js/browserid-mock.js"></script>
+    {% endif %}
+
+  {% endblock %}
+</body>
+</html>

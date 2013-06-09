@@ -8,6 +8,7 @@ ALLOWED_HOSTS = ['pyvideo.ru', 'www.pyvideo.ru', 'pyvideoru.herokuapp.com', '127
 TIME_ZONE = 'Europe/Moscow'
 LANGUAGE_CODE = 'ru'
 SECRET_KEY = 'this_is_not_production_so_who_cares'
+SITE_TITLE = 'pyvideo.ru'
 
 ROOT_URLCONF = 'pyvideo.urls'
 WSGI_APPLICATION = 'pyvideo.wsgi.application'
@@ -26,8 +27,8 @@ STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 INSTALLED_APPS = (
     'raven.contrib.django.raven_compat',
     'suit',
-) + INSTALLED_APPS + (
     'sergey',
+) + INSTALLED_APPS + (
 )
 
 DATABASES = {

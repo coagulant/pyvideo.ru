@@ -1,8 +1,30 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
 from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
 
 from richard.urls import urlpatterns
+from richard.videos.sitemaps import CategorySitemap, SpeakerSitemap, VideoSitemap
 
+
+sitemaps = {
+    'category': CategorySitemap,
+    'speaker': SpeakerSitemap,
+    'video': VideoSitemap
+}
+
+urlpatterns = patterns('',
+    url(r'^$', 'richard.base.views.home', name='home'),
+    url(r'^login-failure$', 'richard.base.views.login_failure',
+        name='login_failure'),
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^pages/', include('richard.pages.urls')),
+    url(r'', include('richard.videos.urls')),
+    url(r'^browserid/', include('django_browserid.urls')),
+)
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += patterns('',
     url(r'^(robots.txt)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
