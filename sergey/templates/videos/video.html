@@ -1,0 +1,134 @@
+{#
+# Copyright (C) 2013 Ilya Baryshev
+# richard -- video index system
+# Copyright (C) 2012, 2013 richard contributors.  See AUTHORS.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-#}
+{% extends "base.html" %}
+{% block title %}{{ page_title(v.title) }}{% endblock %}
+{% import "videos/video_display.html" as videodisplay with context %}
+{% block content %}
+
+{% if not v.is_live() %}
+<div class="alert alert-error">
+  <i class="icon-warning-sign"></i> <strong>Note:</strong>
+  This video is in <strong>draft</strong> mode--it is not live.
+</div>
+{% endif %}
+
+<div class="row">
+  <div id="videobox" class="span12">
+    {{ videodisplay.display(embed, available_formats) }}
+    <div class="section">
+      <h3>{{ v.title }}{% if user.is_staff %}
+        <a href="{{ url('admin:videos_video_change', v.id) }}"><i class="icon-edit"></i> edit</a>
+      {% endif %}</h3>
+    </div>
+  </div>
+</div>
+
+<div class="section row">
+  <div id="videobox" class="span8">
+    {% if v.quality_notes %}
+      <div class="section alert alert-info">
+        <span class="label label-info">Note:</span> {{ v.quality_notes }}
+      </div>
+    {% endif %}
+
+    <p title="Last Updated {{ v.updated | datetime }}" class="muted">
+          {% set speakers = v.speakers.all() %}
+          {% if speakers %}
+            {% for s in speakers %}
+              <a href="{{ s.get_absolute_url() }}">{{ s.name }}</a>
+            {% endfor %}
+          {% else %}
+            Unknown
+          {% endif %}
+          <span class="pull-right">{{ v.recorded | datetime }}</span>
+    </p>
+
+    {% with urls = v.related_urls.all() %}
+      {% if urls %}
+        <div class="section">
+          <h4>Related URLs</h4>
+          <ul>
+          {% for u in urls %}
+            <li><a href="{{ u.url }}">{% if u.description %}{{ u.description }} ({{ u.display() }}){% else %}{{ u.display() }}{% endif %}</a></li>
+          {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% if v.description %}
+        {{ v.description|md }}
+    {% endif %}
+
+    {% set tags = v.tags.all() %}
+    {% if tags %}
+    {% for t in tags %}
+      <span class="label label-info">{{ t.tag }}</span>
+    {% endfor %}
+    {% else %}
+    No tags
+    {% endif %}
+
+  </div>
+
+  <div class="span4">
+    <div id="sidebar" class="well">
+
+
+      <dl>
+        <dt>Событие</dt>
+        <dd>
+          <a href="{{ v.category.get_absolute_url() }}">{{ v.category.title }}</a>
+        </dd>
+
+        <dt>Источник</dt>
+        <dd>
+          {% if v.source_url %}
+            <a href="{{ v.source_url }}">{{ v.source_url }}</a>
+          {% else %}
+            Unknown
+          {% endif %}
+        </dd>
+
+      </dl>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block site_js %}
+  {{ super() }}
+
+  {% if settings['AMARA_SUPPORT'] %}
+    <script type="text/javascript" src="http://s3.www.universalsubtitles.org/js/unisubs-widgetizer.js"></script>
+    <script type="text/javascript" src="http://s3.www.universalsubtitles.org/js/widgetizer/widgetizerprimer.js"></script>
+  {% endif %}
+
+  <script type="text/javascript" src="{{ settings.STATIC_URL }}videos/js/videos.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      // react to changes after page load
+      $(window).on('hashchange', function() {
+        updateVideoOffset('{{ embed_type }}');
+      });
+
+      updateVideoOffset('{{ embed_type }}');
+    });
+  </script>
+{% endblock %}
