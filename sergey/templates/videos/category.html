@@ -34,7 +34,7 @@
 </ul>
 
 <div>
-  <h1>{{ category.title }}
+  <h1>{{ category.title }} {% if category.start_date %}<small>{{ category.start_date|datetime('%d.%m.%Y') }}</small>{% endif %}
     {% if user.is_staff %}
       <small>
         <a href="{{ url('admin:videos_category_change', category.id) }}"><i class="icon-edit"></i> edit</a>
@@ -42,31 +42,17 @@
     {% endif %}
   </h1>
 
-  <div class="well">
-    <dl class="dl-horizontal">
-      {% if category.url %}
-        <dt>URL:</dt>
-        <dd> <a href="{{ category.url }}">{{ category.url }}</a></dd>
+  <div>
+      <div class="row">
+          <div class="span10">
+            {{ category.description|md }}
+          </div>
+      </div>
+      {% if category.description %}
+      <p><a href="{{ category.url }}">{{ category.url }}</a></p>
       {% endif %}
-      <dt>Description:</dt>
-      <dd>
-        {% if category.description %}
-          {{ category.description|md }}
-        {% else %}
-          No description.
-        {% endif %}
-      </dd>
-      {% if category.start_date %}
-        <dt>Date:</dt>
-        <dd>
-          {{ category.start_date|datetime }}
-        </dd>
-      {% endif %}
-      <dt>Number of videos:</dt>
-      <dd>
-        {{ videos|length }}
-      </dd>
-    </dl>
+
+      Всего {{ videos|length }} видео:
   </div>
 </div>
 

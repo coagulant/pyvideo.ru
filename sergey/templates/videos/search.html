@@ -48,7 +48,7 @@
               {% for title, count in facet_counts['category'] %}
                 <li>
                     <a href="{{ request.build_absolute_uri() }}&amp;category={{ title }}">{{ title }}
-                        <span class="label label-info">{{ count }}</span>
+                        <span class="badge">{{ count }}</span>
                     </a>
                 </li>
               {% endfor %}
