@@ -19,9 +19,9 @@
 {% extends "base.html" %}
 {% block title %}
   {% if query %}
-    {{ page_title('Search: ' + query) }}
+    {{ header('Видео: ' + query) }}
   {% else %}
-    {{ page_title('Search') }}
+    {{ header('Поиск') }}
   {% endif %}
 {% endblock %}
 {% import "videos/macros.html" as macros with context %}
@@ -57,6 +57,7 @@
         </div>
       </div>
       <div class="span9">
+        <p class="lead">Найдено {{ page.paginator.count }} видеозаписей</p>
         <div class="row"><div class="span12">
         {% for result in page.object_list %}
           {{ macros.video_summary(result.object, false, true) }}

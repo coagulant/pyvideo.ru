@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -#}
 {% extends "base.html" %}
-{% block title %}{{ page_title(category.title) }}{% endblock %}
+{% block title %}{{ header(category.title) }}{% endblock %}
 
 {% block additional_head %}
   {{ super() }}
