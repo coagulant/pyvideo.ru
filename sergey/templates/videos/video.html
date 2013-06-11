@@ -47,7 +47,7 @@
       </div>
     {% endif %}
 
-    <p title="Last Updated {{ v.updated | datetime }}" class="muted">
+    <p title="Last Updated {{ v.updated | datetime("%d.%m.%Y") }}" class="muted">
           {% set speakers = v.speakers.all() %}
           {% if speakers %}
             {% for s in speakers %}
@@ -56,7 +56,7 @@
           {% else %}
             Unknown
           {% endif %}
-          <span class="pull-right">{{ v.recorded | datetime }}</span>
+          <span class="pull-right">{{ v.recorded | datetime("%d.%m.%Y") }}</span>
     </p>
 
     {% with urls = v.related_urls.all() %}
@@ -110,25 +110,4 @@
     </div>
   </div>
 </div>
-{% endblock %}
-
-{% block site_js %}
-  {{ super() }}
-
-  {% if settings['AMARA_SUPPORT'] %}
-    <script type="text/javascript" src="http://s3.www.universalsubtitles.org/js/unisubs-widgetizer.js"></script>
-    <script type="text/javascript" src="http://s3.www.universalsubtitles.org/js/widgetizer/widgetizerprimer.js"></script>
-  {% endif %}
-
-  <script type="text/javascript" src="{{ settings.STATIC_URL }}videos/js/videos.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      // react to changes after page load
-      $(window).on('hashchange', function() {
-        updateVideoOffset('{{ embed_type }}');
-      });
-
-      updateVideoOffset('{{ embed_type }}');
-    });
-  </script>
 {% endblock %}

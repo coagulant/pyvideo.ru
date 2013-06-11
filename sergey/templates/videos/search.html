@@ -57,7 +57,7 @@
         </div>
       </div>
       <div class="span9">
-        <p class="lead">Найдено {{ page.paginator.count }} видеозаписей</p>
+        <p class="lead">Найдено {{ page.paginator.count }} видео</p>
         <div class="row"><div class="span12">
         {% for result in page.object_list %}
           {{ macros.video_summary(result.object, false, true) }}
@@ -81,13 +81,13 @@
             {% if page.has_previous() %}
               <li><a href="?q={{ query }}&amp;page={{ page.previous_page_number() }}">&laquo; Previous</a></li>
             {% else %}
-              <li class="disabled"><a>&laquo;Previous</a></li>
+              <li class="disabled"><a>&laquo;Назад</a></li>
             {% endif %}
 			
             {% if page.has_next() %}
               <li><a href="?q={{ query }}&amp;page={{ page.next_page_number() }}"> Next &raquo;</a></li>
             {% else %}
-              <li class="disabled"><a>Next&raquo;</a></li>
+              <li class="disabled"><a>Вперёд&raquo;</a></li>
             {% endif %}
           </ul>
         </div>
