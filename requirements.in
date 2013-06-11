@@ -22,3 +22,4 @@ raven>=3
 
 #Custom
 django-suit
+embedly
