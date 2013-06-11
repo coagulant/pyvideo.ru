@@ -70,30 +70,32 @@
     {% block content %}{% endblock %}
 
     <div id="footer">
+        <div class="pull-right text-right">
+            <div>
+                Сделал <a href="http://ilyabaryshev.ru">Илья Барышев</a>
+            </div>
+            <div class="muted">
+                Обратная связь: <a href="mailto:baryshev@gmail.com">baryshev@gmail.com</a>
+                или <a href="https://twitter.com/coagulant/">@coagulant</a>
+            </div>
+        </div>
         <ul class="social-likes">
             <li class="github" title="Fork me on GitHub">GitHub</li>
             <li class="facebook" title="Share link on Facebook">Facebook</li>
             <li class="twitter" data-via="coagulant" title="Share link on Twitter">Twitter</li>
             <li class="plusone" title="Share link on Google+">Google+</li>
         </ul>
-        <span class="pull-right">
-            Сделал <a href="http://ilyabaryshev.ru">Илья Барышев</a><br/>
-        </span>
-        <span class="pull-right muted">Обратная связь: <a href="mailto:baryshev@gmail.com">baryshev@gmail.com</a>
-            или <a href="https://twitter.com/coagulant/">@coagulant</a></span>
-        </span>
-
-            <script>
-                var socialLikesButtons = {
-                    github: {
-                        counterUrl: 'https://api.github.com/repos/coagulant/pyvideo.ru?callback=?',
-                        convertNumber: function(data) {
-                            return data.data.watchers_count;
-                        },
-                        clickUrl: 'https://github.com/coagulant/pyvideo.ru'
-                    }
-                };
-            </script>
+        <script>
+            var socialLikesButtons = {
+                github: {
+                    counterUrl: 'https://api.github.com/repos/coagulant/pyvideo.ru?callback=?',
+                    convertNumber: function(data) {
+                        return data.data.watchers_count;
+                    },
+                    clickUrl: 'https://github.com/coagulant/pyvideo.ru'
+                }
+            };
+        </script>
     </div>
   </div>
 
