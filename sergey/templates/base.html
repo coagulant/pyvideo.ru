@@ -100,6 +100,9 @@
   {% endblock %}
 
   {% block site_js %}
+  {% if settings.ENABLE_METRICS %}
+  {% include 'blocks/metrika.html' %}
+  {% endif %}
   <script type="text/javascript" src="{{ settings.STATIC_URL }}js/jquery-1.7.2.min.js"></script>
   <script type="text/javascript" src="{{ settings.STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="{{ settings.STATIC_URL }}js/social.js"></script>

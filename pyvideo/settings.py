@@ -43,3 +43,4 @@ SUIT_CONFIG = {
 }
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/admin/'
+ENABLE_METRICS = False
