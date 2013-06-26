@@ -41,12 +41,12 @@
             </h3>
 
             {% if latest_categories %}
-                <ul>
+                <ul class="unstyled pull-left">
                     {% for cat in latest_categories %}
                         {% if user.is_staff or cat.video_set.live().count() > 0 %}
-                            <li>
+                            <li class="category">
                                 <a href="{{ cat.get_absolute_url() }}">{{ cat.title }}</a>
-                                ({{ cat.video_set.live().count() }})
+                                <span class="category__counter badge pull-right">{{ cat.video_set.live().count() }}</span>
                             </li>
                         {% endif %}
                     {% endfor %}
@@ -65,16 +65,19 @@
             </h3>
 
             {% if latest_videos %}
-                <ul>
+                <ul class="unstyled">
                     {% for video in latest_videos %}
                         <li>
-                            <a href="{{ video.get_absolute_url() }}">{{ video.title }}</a>
+                            <a class="video-link" href="{{ video.get_absolute_url() }}">{{ video.title }}</a>
                         </li>
                     {% endfor %}
                 </ul>
             {% endif %}
             <p>
-                <a href="{{ url('videos-search') }}">Искать видео...</a>
+                <a class="label" href="{{ url('videos-search') }}">
+                    <i class="icon-search"></i>
+                    Искать видео
+                </a>
             </p>
         </div>
     </div>
