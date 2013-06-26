@@ -17,97 +17,101 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -#}
 {% extends "base.html" %}
+
+
 {% block title %}{{ header(v.title) }}{% endblock %}
 {% import "videos/video_display.html" as videodisplay with context %}
 {% block content %}
 
-{% if not v.is_live() %}
-<div class="alert alert-error">
-  <i class="icon-warning-sign"></i> <strong>Note:</strong>
-  This video is in <strong>draft</strong> mode--it is not live.
-</div>
-{% endif %}
-
-<div class="row">
-  <div id="videobox" class="span12">
-    {{ videodisplay.display(embed, available_formats) }}
-    <div class="section">
-      <h3>{{ v.title }}{% if user.is_staff %}
-        <a href="{{ url('admin:videos_video_change', v.id) }}"><i class="icon-edit"></i> edit</a>
-      {% endif %}</h3>
-    </div>
-  </div>
-</div>
-
-<div class="section row">
-  <div id="videobox" class="span8">
-    {% if v.quality_notes %}
-      <div class="section alert alert-info">
-        <span class="label label-info">Note:</span> {{ v.quality_notes }}
-      </div>
-    {% endif %}
-
-    <p title="Last Updated {{ v.updated | datetime("%d.%m.%Y") }}" class="muted">
-          {% set speakers = v.speakers.all() %}
-          {% if speakers %}
-            {% for s in speakers %}
-              <a href="{{ s.get_absolute_url() }}">{{ s.name }}</a>
-            {% endfor %}
-          {% else %}
-            Unknown
-          {% endif %}
-          <span class="pull-right">{{ v.recorded | datetime("%d.%m.%Y") }}</span>
-    </p>
-
-    {% with urls = v.related_urls.all() %}
-      {% if urls %}
-        <div class="section">
-          <h4>Related URLs</h4>
-          <ul>
-          {% for u in urls %}
-            <li><a href="{{ u.url }}">{% if u.description %}{{ u.description }} ({{ u.display() }}){% else %}{{ u.display() }}{% endif %}</a></li>
-          {% endfor %}
-          </ul>
+    {% if not v.is_live() %}
+        <div class="alert alert-error">
+            <i class="icon-warning-sign"></i> <strong>Note:</strong>
+            This video is in <strong>draft</strong> mode--it is not live.
         </div>
-      {% endif %}
-    {% endwith %}
-
-    {% if v.description %}
-        {{ v.description|md }}
     {% endif %}
 
-    {% set tags = v.tags.all() %}
-    {% if tags %}
-    {% for t in tags %}
-      <span class="label label-info">{{ t.tag }}</span>
-    {% endfor %}
-    {% else %}
-    No tags
-    {% endif %}
-
-  </div>
-
-  <div class="span4">
-    <div id="sidebar" class="well">
-
-
-      <dl>
-        <dt>Событие</dt>
-        <dd>
-          <a href="{{ v.category.get_absolute_url() }}">{{ v.category.title }}</a>
-        </dd>
-
-        <dt>Источник</dt>
-        <dd>
-          {% if v.source_url %}
-            <a href="{{ v.source_url }}">{{ v.source_url }}</a>
-          {% else %}
-            Unknown
-          {% endif %}
-        </dd>
-
-      </dl>
+    <div class="row">
+        <div id="videobox" class="span12">
+            {{ videodisplay.display(embed, available_formats) }}
+            <div class="section">
+                <h3>{{ v.title }}{% if user.is_staff %}
+                    <a href="{{ url('admin:videos_video_change', v.id) }}"><i class="icon-edit"></i> edit</a>
+                {% endif %}</h3>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+
+    <div class="section row">
+        <div id="videobox" class="span8">
+            {% if v.quality_notes %}
+                <div class="section alert alert-info">
+                    <span class="label label-info">Note:</span> {{ v.quality_notes }}
+                </div>
+            {% endif %}
+
+            <p title="Last Updated {{ v.updated | datetime("%d.%m.%Y") }}" class="muted">
+                {% set speakers = v.speakers.all() %}
+                {% if speakers %}
+                    {% for s in speakers %}
+                        <a href="{{ s.get_absolute_url() }}">{{ s.name }}</a>
+                    {% endfor %}
+                {% else %}
+                    Unknown
+                {% endif %}
+                <span class="pull-right">{{ v.recorded | datetime("%d.%m.%Y") }}</span>
+            </p>
+
+            {% with urls = v.related_urls.all() %}
+                {% if urls %}
+                    <div class="section">
+                        <h4>Related URLs</h4>
+                        <ul>
+                            {% for u in urls %}
+                                <li><a href="{{ u.url }}">
+                                    {% if u.description %}{{ u.description }} ({{ u.display() }}){% else %}{{ u.display(
+                                        ) }}{% endif %}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            {% if v.description %}
+                {{ v.description|md }}
+            {% endif %}
+
+            {% set tags = v.tags.all() %}
+            {% if tags %}
+                {% for t in tags %}
+                    <span class="label label-info">{{ t.tag }}</span>
+                {% endfor %}
+            {% else %}
+                No tags
+            {% endif %}
+
+        </div>
+
+        <div class="span4">
+            <div id="sidebar" class="well">
+
+
+                <dl>
+                    <dt>Событие</dt>
+                    <dd>
+                        <a href="{{ v.category.get_absolute_url() }}">{{ v.category.title }}</a>
+                    </dd>
+
+                    <dt>Источник</dt>
+                    <dd>
+                        {% if v.source_url %}
+                            <a href="{{ v.source_url }}">{{ v.source_url }}</a>
+                        {% else %}
+                            Unknown
+                        {% endif %}
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -17,31 +17,33 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -#}
 {% extends "base.html" %}
+
+
 {% block title %}{{ header('Докладчики') }}{% endblock %}
 {% block content %}
 
-<div class="page-header">
-  <h1>Докладчики</h1>
-</div>
+    <div class="page-header">
+        <h1>Докладчики</h1>
+    </div>
 
-<div class="row">
-  <div class="span12 section">
-    <table class="table">
-      {% for row in speakers|batch(4, '&nbsp;') %}
-        <tr>
-          {% for s in row %}
-            <td>
-              {% if s != '&nbsp;' %}
-                <a href="{{ s.get_absolute_url() }}">{{ s.name }}</a>
-                ({{ s.video_count }})
-              {% else %}
-                &nbsp;
-              {% endif %}
-            </td>
-          {% endfor %}
-        </tr>
-      {% endfor %}
-    </table>
-  </div>
-</div>
+    <div class="row">
+        <div class="span12 section">
+            <table class="table">
+                {% for row in speakers|batch(4, '&nbsp;') %}
+                    <tr>
+                        {% for s in row %}
+                            <td>
+                                {% if s != '&nbsp;' %}
+                                    <a href="{{ s.get_absolute_url() }}">{{ s.name }}</a>
+                                    ({{ s.video_count }})
+                                {% else %}
+                                    &nbsp;
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 {% endblock %}

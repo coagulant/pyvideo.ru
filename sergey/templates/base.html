@@ -19,53 +19,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="{{ settings.STATIC_URL }}bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/richard.css">
-  <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/pyvideo.css">
-  <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/social.css">
-  <link rel="search" type="application/opensearchdescription+xml" title="{{ settings.SITE_TITLE }} search" href="{{ url('videos-opensearch') }}">
-  <title>{% block title %}{{ header('Видео о python на русском') }}{% endblock %}</title>
-{% if meta %}
-  {% for meta_name, meta_content in meta %}
-    <meta name="{{ meta_name }}" content="{{ meta_content }}">
-  {% endfor %}
-{% endif %}
-  {% block additional_head %}{% endblock %}
+    <link rel="stylesheet" href="{{ settings.STATIC_URL }}bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/richard.css">
+    <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/pyvideo.css">
+    <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/social.css">
+    <link rel="search" type="application/opensearchdescription+xml" title="{{ settings.SITE_TITLE }} search"
+          href="{{ url('videos-opensearch') }}">
+    <title>{% block title %}{{ header('Видео о python на русском') }}{% endblock %}</title>
+    {% if meta %}
+        {% for meta_name, meta_content in meta %}
+            <meta name="{{ meta_name }}" content="{{ meta_content }}">
+        {% endfor %}
+    {% endif %}
+    {% block additional_head %}{% endblock %}
 </head>
 <body>
-  {{ browserid_info()|safe }}
-  <div class="navbar navbar-inverse">
+{{ browserid_info()|safe }}
+<div class="navbar navbar-inverse">
     <div class="navbar-inner">
-      <div class="container">
-        <a class="brand" href="{{ url('home') }}">{{ settings.SITE_TITLE }}</a>
-        <ul class="nav">
-            <li><a href="{{ url('videos-category-list') }}">События</a></li>
-            <li><a href="{{ url('videos-speaker-list') }}">Люди</a></li>
-        </ul>
+        <div class="container">
+            <a class="brand" href="{{ url('home') }}">{{ settings.SITE_TITLE }}</a>
+            <ul class="nav">
+                <li><a href="{{ url('videos-category-list') }}">События</a></li>
+                <li><a href="{{ url('videos-speaker-list') }}">Люди</a></li>
+            </ul>
 
-        <ul class="nav pull-right">
-            <form class="navbar-search pull-left" action="{{ url('videos-search') }}">
-              <input type="hidden" name="models" value="videos.video">
-              <input type="text" class="search-query input-large" name="q" placeholder="Искать видео" value="{{ query }}">
-            </form>
-        </ul>
-      </div>
+            <ul class="nav pull-right">
+                <form class="navbar-search pull-left" action="{{ url('videos-search') }}">
+                    <input type="hidden" name="models" value="videos.video">
+                    <input type="text" class="search-query input-large" name="q" placeholder="Искать видео"
+                           value="{{ query }}">
+                </form>
+            </ul>
+        </div>
     </div>
-  </div>
+</div>
 
-  <div id="content" class="container">
-  {% if notifications -%}
+<div id="content" class="container">
+    {% if notifications - %}
     <div class="row">
-      <div class="span12">
-    {% for n in notifications -%}
-      <div class="alert alert-info">
-        <i class="icon-info-sign"></i> <strong>{{ n.interjection }}</strong>
-        {{ n.text|md }}
-      </div>
-    {%- endfor %}
-      </div>
+        <div class="span12">
+            {% for n in notifications - %}
+            <div class="alert alert-info">
+                <i class="icon-info-sign"></i> <strong>{{ n.interjection }}</strong>
+                {{ n.text|md }}
+            </div>
+            {% - endfor %}
+        </div>
     </div>
-  {%- endif %}
+    {% - endif %}
 
     {% block content %}{% endblock %}
 
@@ -89,7 +91,7 @@
             var socialLikesButtons = {
                 github: {
                     counterUrl: 'https://api.github.com/repos/coagulant/pyvideo.ru?callback=?',
-                    convertNumber: function(data) {
+                    convertNumber: function (data) {
                         return data.data.watchers_count;
                     },
                     clickUrl: 'https://github.com/coagulant/pyvideo.ru'
@@ -97,17 +99,17 @@
             };
         </script>
     </div>
-  </div>
+</div>
 
-  {% block additional_body %}
-  {% endblock %}
+{% block additional_body %}
+{% endblock %}
 
-  {% block site_js %}
-  {% if settings.ENABLE_METRICS %}
-  {% include 'blocks/metrika.html' %}
-  {% endif %}
-  <script type="text/javascript" src="{{ settings.STATIC_URL }}js/jquery-1.7.2.min.js"></script>
-  <script type="text/javascript" src="{{ settings.STATIC_URL }}js/social.js"></script>
-  {% endblock %}
+{% block site_js %}
+    {% if settings.ENABLE_METRICS %}
+        {% include 'blocks/metrika.html' %}
+    {% endif %}
+    <script type="text/javascript" src="{{ settings.STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="{{ settings.STATIC_URL }}js/social.js"></script>
+{% endblock %}
 </body>
 </html>
