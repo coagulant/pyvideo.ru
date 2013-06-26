@@ -20,71 +20,62 @@
 
 
 {% block content %}
+    {% block contenthero %}
+        <div class="hello hero-unit">
+            <h1 class="hello__header">Видео о python на русском</h1>
+            <p>
+                Собрание видеозаписей докладов и лекций про Python.<br>
+                В основном на <strong>русском языке</strong>, но для PyConRU и PyConUA сделано исключение.
+            </p>
+            <p>
+                Уже собрали {{ video_count }} видео, <a href="https://github.com/coagulant/pyvideo.ru/issues">присылайте
+                ещё</a>.<br>
+            </p>
+        </div>
+    {% endblock %}
 
-    <div class="row">
-        <div class="span12">
-            {% block contenthero %}
-                <div class="hero-unit">
-                    <h1>Видео о python на русском</h1>
+    <div class="row-fluid">
+        <div class="span6">
+            <h3>События
+                <small><a class="feed" href="{{ url('videos-category-feed') }}"></a></small>
+            </h3>
 
-                    <p>
-                        Собрание видеозаписей докладов и лекций про Python.<br>
-                        В основном на <strong>русском языке</strong>, но для PyConRU и PyConUA сделано исключение.
-                    </p>
+            {% if latest_categories %}
+                <ul>
+                    {% for cat in latest_categories %}
+                        {% if user.is_staff or cat.video_set.live().count() > 0 %}
+                            <li>
+                                <a href="{{ cat.get_absolute_url() }}">{{ cat.title }}</a>
+                                ({{ cat.video_set.live().count() }})
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
 
-                    <p>
-                        Уже собрали {{ video_count }} видео, <a href="https://github.com/coagulant/pyvideo.ru/issues">присылайте
-                        ещё</a>.<br>
-                    </p>
-                </div>
-            {% endblock %}
+            {% if latest_categories|length > 10 %}
+                <p>
+                    <a href="{{ url('videos-category-list') }}">See all categories...</a>
+                </p>
+            {% endif %}
+        </div>
+        <div class="span6">
+            <h3>Последние видеозаписи
+                <small><a class="feed" href="{{ url('videos-new-feed') }}"></a></small>
+            </h3>
 
-            <div class="row section">
-                <div class="span6">
-                    <h3>События
-                        <small><a class="feed" href="{{ url('videos-category-feed') }}"></a></small>
-                    </h3>
-
-                    {% if latest_categories %}
-                        <ul>
-                            {% for cat in latest_categories %}
-                                {% if user.is_staff or cat.video_set.live().count() > 0 %}
-                                    <li>
-                                        <a href="{{ cat.get_absolute_url() }}">{{ cat.title }}</a>
-                                        ({{ cat.video_set.live().count() }})
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-
-                    {% if latest_categories|length > 10 %}
-                        <p>
-                            <a href="{{ url('videos-category-list') }}">See all categories...</a>
-                        </p>
-                    {% endif %}
-                </div>
-
-                <div class="span6">
-                    <h3>Последние видеозаписи
-                        <small><a class="feed" href="{{ url('videos-new-feed') }}"></a></small>
-                    </h3>
-
-                    {% if latest_videos %}
-                        <ul>
-                            {% for video in latest_videos %}
-                                <li>
-                                    <a href="{{ video.get_absolute_url() }}">{{ video.title }}</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                    <p>
-                        <a href="{{ url('videos-search') }}">Искать видео...</a>
-                    </p>
-                </div>
-
-            </div>
+            {% if latest_videos %}
+                <ul>
+                    {% for video in latest_videos %}
+                        <li>
+                            <a href="{{ video.get_absolute_url() }}">{{ video.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <p>
+                <a href="{{ url('videos-search') }}">Искать видео...</a>
+            </p>
         </div>
     </div>
 {% endblock %}

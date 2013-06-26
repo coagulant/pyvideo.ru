@@ -20,8 +20,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" href="{{ settings.STATIC_URL }}bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ settings.STATIC_URL }}bootstrap/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="{{ settings.STATIC_URL }}bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="{{ settings.STATIC_URL }}bootstrap/css/bootstrap-responsive.css">
     <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/richard.css">
     <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/pyvideo.css">
     <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/social.css">
@@ -62,7 +62,7 @@
                         <form class="navbar-search span3" action="{{ url('videos-search') }}">
                             <input type="hidden" name="models" value="videos.video">
                             <input type="text"
-                                   class="search-query input-block-level"
+                                   class="page__search-query search-query input-block-level"
                                    name="q"
                                    placeholder="Искать видео"
                                    value="{{ query }}">
@@ -89,7 +89,7 @@
             {% block content %}{% endblock %}
 
             <hr />
-            <div class="row-fluid">
+            <footer class="page__footer row-fluid">
                 <div class="span6">
                     <ul class="social-likes">
                         <li class="github" title="Fork me on GitHub">GitHub</li>
@@ -118,7 +118,7 @@
                         или <a href="https://twitter.com/coagulant/">@coagulant</a>
                     </div>
                 </div>
-            </div>
+            </footer>
         </div>
     </section>
 

@@ -1,7 +1,21 @@
+/**
+ * @section     Page layout
+ */
+
 .page {
     max-width: 1280px;
     margin: 0 auto;
     padding-top: 60px;
+
+    background: #fff;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YyZjJlZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #eeeee2 0%, #ffffff 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeee2), color-stop(100%,#ffffff));
+    background: -webkit-linear-gradient(top,  #eeeee2 0%,#ffffff 100%);
+    background: -o-linear-gradient(top,  #eeeee2 0%,#ffffff 100%);
+    background: -ms-linear-gradient(top,  #eeeee2 0%,#ffffff 100%);
+    background: linear-gradient(to bottom,  #eeeee2 0%,#ffffff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeee2', endColorstr='#ffffff',GradientType=0 );
 }
 @media (max-width: 979px) {
     .page {
@@ -16,12 +30,48 @@
 .page__logo {
     margin-left: 0;
 }
-
-
-.hero-unit {
-    padding: 0;
-    background-color: white;
+@media (max-width: 768px) {
+    .page__search-query {
+        margin: 5px 0 !important;
+    }
 }
-.hero-unit h1 {
-    margin-bottom: 15px;
+.page__footer {
+    padding-bottom: 20px;
+}
+
+
+/**
+ * @section     Main page
+ */
+
+.hello {
+    padding: 35px 50px;
+    background: url(../images/yellow.png) 0 0 repeat;
+    border-radius: 3px;
+}
+.hello__header {
+    font-size: 42px !important;
+    margin-bottom: 3% !important;
+}
+@media (max-width: 979px) {
+    .hello {
+        padding: 25px 30px;
+        line-height: 26px;
+        font-size: 17px;
+    }
+    .hello__header {
+        font-size: 32px !important;
+        margin-bottom: 30px !important;
+    }
+}
+@media (max-width: 480px) {
+    .hello {
+        padding: 15px 20px;
+        line-height: 24px;
+        font-size: 16px;
+    }
+    .hello__header {
+        font-size: 28px !important;
+        margin-bottom: 20px !important;
+    }
 }
