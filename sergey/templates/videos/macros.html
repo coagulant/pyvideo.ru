@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -#}
-{% macro video_summary(v, wide, show_category) - %}
+{% macro video_summary(v, wide, show_category) -%}
 {% set span = 'span10' if wide else 'span7' %}
 <div class="row section">
     <div class="span2">
@@ -55,4 +55,4 @@
         </div>
     </div>
 </div>
-{% - endmacro %}
+{%- endmacro %}
