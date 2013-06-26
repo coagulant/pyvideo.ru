@@ -4,3 +4,4 @@ venv
 richard
 database.db
 whoosh_index
+pyvideo/local_settings.py

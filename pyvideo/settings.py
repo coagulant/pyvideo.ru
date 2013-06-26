@@ -21,6 +21,7 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 )
 JINGO_EXCLUDE_APPS += (
     'suit',
+    'haystack_panel',
 )
 STATIC_ROOT = os.path.join(PROJECT_PATH, '../sergey/static')
 
@@ -28,6 +29,8 @@ INSTALLED_APPS = (
     'raven.contrib.django.raven_compat',
     'suit',
     'sergey',
+    'debug_toolbar',
+    'haystack_panel',
 ) + INSTALLED_APPS
 
 DATABASES = {
@@ -44,3 +47,12 @@ SUIT_CONFIG = {
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/admin/'
 ENABLE_METRICS = False
+
+MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+INTERNAL_IPS = ('127.0.0.1',)
+DEBUG_TOOLBAR_PANELS = ('haystack_panel.panel.HaystackDebugPanel',)
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
