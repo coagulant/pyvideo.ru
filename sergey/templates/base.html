@@ -38,24 +38,36 @@
 <body>
     {{ browserid_info()|safe }}
     <section class="page">
-        <header class="navbar navbar-inverse navbar-fixed-top">
+        <header class="page__header navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="brand" href="{{ url('home') }}">{{ settings.SITE_TITLE }}</a>
-                    <ul class="nav">
-                        <li><a href="{{ url('videos-category-list') }}">События</a></li>
-                        <li><a href="{{ url('videos-speaker-list') }}">Люди</a></li>
-                    </ul>
-                    <ul class="nav pull-right">
-                        <form class="navbar-search pull-left" action="{{ url('videos-search') }}">
+                <div class="page__header-wrapper container-fluid">
+                    <div class="row-fluid">
+                        <div class="span9">
+                            <button type="button"
+                                    class="btn btn-navbar"
+                                    data-toggle="collapse"
+                                    data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="page__logo brand" href="{{ url('home') }}">{{ settings.SITE_TITLE }}</a>
+                            <div class="nav-collapse collapse">
+                                <ul class="nav">
+                                    <li><a href="{{ url('videos-category-list') }}">События</a></li>
+                                    <li><a href="{{ url('videos-speaker-list') }}">Люди</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <form class="navbar-search span3" action="{{ url('videos-search') }}">
                             <input type="hidden" name="models" value="videos.video">
                             <input type="text"
-                                   class="search-query input-large"
+                                   class="search-query input-block-level"
                                    name="q"
                                    placeholder="Искать видео"
                                    value="{{ query }}">
                         </form>
-                    </ul>
+                    </div>
                 </div>
             </div>
         </header>
@@ -97,7 +109,7 @@
                         };
                     </script>
                 </div>
-                <div class="span6 text-right">
+                <div class="span6">
                     <div>
                         Сделал <a href="http://ilyabaryshev.ru">Илья Барышев</a>
                     </div>
@@ -119,6 +131,7 @@
         {% endif %}
         <script type="text/javascript" src="{{ settings.STATIC_URL }}js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="{{ settings.STATIC_URL }}js/social.js"></script>
+        <script type="text/javascript" src="{{ settings.STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
     {% endblock %}
 </body>
 </html>
