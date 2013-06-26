@@ -19,7 +19,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="{{ settings.STATIC_URL }}bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ settings.STATIC_URL }}bootstrap/css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/richard.css">
     <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/pyvideo.css">
     <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/social.css">
@@ -34,82 +36,89 @@
     {% block additional_head %}{% endblock %}
 </head>
 <body>
-{{ browserid_info()|safe }}
-<div class="navbar navbar-inverse">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="brand" href="{{ url('home') }}">{{ settings.SITE_TITLE }}</a>
-            <ul class="nav">
-                <li><a href="{{ url('videos-category-list') }}">События</a></li>
-                <li><a href="{{ url('videos-speaker-list') }}">Люди</a></li>
-            </ul>
-
-            <ul class="nav pull-right">
-                <form class="navbar-search pull-left" action="{{ url('videos-search') }}">
-                    <input type="hidden" name="models" value="videos.video">
-                    <input type="text" class="search-query input-large" name="q" placeholder="Искать видео"
-                           value="{{ query }}">
-                </form>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div id="content" class="container">
-    {% if notifications - %}
-    <div class="row">
-        <div class="span12">
-            {% for n in notifications - %}
-            <div class="alert alert-info">
-                <i class="icon-info-sign"></i> <strong>{{ n.interjection }}</strong>
-                {{ n.text|md }}
+    {{ browserid_info()|safe }}
+    <section class="page">
+        <header class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="brand" href="{{ url('home') }}">{{ settings.SITE_TITLE }}</a>
+                    <ul class="nav">
+                        <li><a href="{{ url('videos-category-list') }}">События</a></li>
+                        <li><a href="{{ url('videos-speaker-list') }}">Люди</a></li>
+                    </ul>
+                    <ul class="nav pull-right">
+                        <form class="navbar-search pull-left" action="{{ url('videos-search') }}">
+                            <input type="hidden" name="models" value="videos.video">
+                            <input type="text"
+                                   class="search-query input-large"
+                                   name="q"
+                                   placeholder="Искать видео"
+                                   value="{{ query }}">
+                        </form>
+                    </ul>
+                </div>
             </div>
-            {% - endfor %}
-        </div>
-    </div>
-    {% - endif %}
+        </header>
 
-    {% block content %}{% endblock %}
-
-    <div id="footer">
-        <div class="pull-right text-right">
-            <div>
-                Сделал <a href="http://ilyabaryshev.ru">Илья Барышев</a>
+        <div id="content" class="container-fluid">
+            {% if notifications -%}
+            <div class="row-fluid">
+                <div class="span12">
+                    {% for n in notifications -%}
+                    <div class="alert alert-info">
+                        <i class="icon-info-sign"></i> <strong>{{ n.interjection }}</strong>
+                        {{ n.text|md }}
+                    </div>
+                    {%- endfor %}
+                </div>
             </div>
-            <div class="muted">
-                Обратная связь: <a href="mailto:baryshev@gmail.com">baryshev@gmail.com</a>
-                или <a href="https://twitter.com/coagulant/">@coagulant</a>
+            {%- endif %}
+
+            {% block content %}{% endblock %}
+
+            <hr />
+            <div class="row-fluid">
+                <div class="span6">
+                    <ul class="social-likes">
+                        <li class="github" title="Fork me on GitHub">GitHub</li>
+                        <li class="facebook" title="Share link on Facebook">Facebook</li>
+                        <li class="twitter" data-via="coagulant" title="Share link on Twitter">Twitter</li>
+                        <li class="plusone" title="Share link on Google+">Google+</li>
+                    </ul>
+                    <script>
+                        var socialLikesButtons = {
+                            github: {
+                                counterUrl: 'https://api.github.com/repos/coagulant/pyvideo.ru?callback=?',
+                                convertNumber: function (data) {
+                                    return data.data.watchers_count;
+                                },
+                                clickUrl: 'https://github.com/coagulant/pyvideo.ru'
+                            }
+                        };
+                    </script>
+                </div>
+                <div class="span6 text-right">
+                    <div>
+                        Сделал <a href="http://ilyabaryshev.ru">Илья Барышев</a>
+                    </div>
+                    <div class="muted">
+                        Обратная связь: <a href="mailto:baryshev@gmail.com">baryshev@gmail.com</a>
+                        или <a href="https://twitter.com/coagulant/">@coagulant</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <ul class="social-likes">
-            <li class="github" title="Fork me on GitHub">GitHub</li>
-            <li class="facebook" title="Share link on Facebook">Facebook</li>
-            <li class="twitter" data-via="coagulant" title="Share link on Twitter">Twitter</li>
-            <li class="plusone" title="Share link on Google+">Google+</li>
-        </ul>
-        <script>
-            var socialLikesButtons = {
-                github: {
-                    counterUrl: 'https://api.github.com/repos/coagulant/pyvideo.ru?callback=?',
-                    convertNumber: function (data) {
-                        return data.data.watchers_count;
-                    },
-                    clickUrl: 'https://github.com/coagulant/pyvideo.ru'
-                }
-            };
-        </script>
-    </div>
-</div>
+    </section>
 
-{% block additional_body %}
-{% endblock %}
+    {% block additional_body %}
+    {% endblock %}
 
-{% block site_js %}
-    {% if settings.ENABLE_METRICS %}
-        {% include 'blocks/metrika.html' %}
-    {% endif %}
-    <script type="text/javascript" src="{{ settings.STATIC_URL }}js/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="{{ settings.STATIC_URL }}js/social.js"></script>
-{% endblock %}
+    {% block site_js %}
+        {% if settings.ENABLE_METRICS %}
+            {% include 'blocks/metrika.html' %}
+        {% endif %}
+        <script type="text/javascript" src="{{ settings.STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="{{ settings.STATIC_URL }}js/social.js"></script>
+    {% endblock %}
 </body>
 </html>

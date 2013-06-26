@@ -1,0 +1,45 @@
+a.feed:before {
+  content:url(/static/img/rss_feed.png);
+}
+
+.news-item {
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+.section {
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+div#sidebar dd {
+  padding: 6px;
+}
+
+.stats-number strong {
+  font-size: 2em;
+}
+
+.stats-number em {
+  font-style: normal;
+  font-size: 1.1em;
+}
+
+.navbar-inner {
+  border-radius: 0px;
+}
+
+.centered {
+  text-align: center;
+}
+
+.videobox-inner {
+  background: #ccc;
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.indent {
+  padding-left: 2em;
+}

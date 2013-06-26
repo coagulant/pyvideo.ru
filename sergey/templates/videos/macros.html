@@ -36,9 +36,9 @@
         <div>
             {% if v.speakers.all() %}
                 {% set pipe = joiner(", ") %}
-                {% for s in v.speakers.all() - %}
+                {% for s in v.speakers.all() -%}
                 {{ pipe() }}<a href="{{ s.get_absolute_url() }}">{{ s.name }}</a>
-                {% - endfor %}
+                {%- endfor %}
             {% endif %}
         </div>
         <div>

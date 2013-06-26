@@ -79,9 +79,9 @@
                         {% if v.speakers.all() %}
                             &mdash;
                             {% set pipe = joiner(", ") %}
-                            {% for s in v.speakers.all() - %}
+                            {% for s in v.speakers.all() -%}
                             {{ pipe() }} {{ s.name }}
-                            {% - endfor %}
+                            {%- endfor %}
                         {% endif %}
                     </td>
                     <td>
