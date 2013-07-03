@@ -45,8 +45,8 @@
                     {% for cat in latest_categories %}
                         {% if user.is_staff or cat.video_set.live().count() > 0 %}
                             <li class="category">
-                                <a href="{{ cat.get_absolute_url() }}">{{ cat.title }}</a>
                                 <span class="category__counter badge pull-right">{{ cat.video_set.live().count() }}</span>
+                                <a href="{{ cat.get_absolute_url() }}">{{ cat.title }}</a>
                             </li>
                         {% endif %}
                     {% endfor %}

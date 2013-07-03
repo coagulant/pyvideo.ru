@@ -18,41 +18,39 @@
 -#}
 {% macro video_summary(v, wide, show_category) -%}
 {% set span = 'span10' if wide else 'span7' %}
-<div class="row section">
-    <div class="span2">
-        <a href="{{ v.get_absolute_url() }}" class="thumbnail"><img width="{{ v.thumbnail_width }}"
-                                                                    height="{{ v.thumbnail_height }}"
-                                                                    src="{{ v.get_thumbnail_url() }}"></a>
-    </div>
-
-    <div class="{{ span }}">
-        <div>
-            <strong><a href="{{ v.get_absolute_url() }}">{{ v.title }}</a></strong>
+<div class="media">
+    <a class="pull-left" href="{{ v.get_absolute_url() }}" class="thumbnail">
+        <img class="media-object" width="{{ v.thumbnail_width }}" height="{{ v.thumbnail_height }}" src="{{ v.get_thumbnail_url() }}" />
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading">
+            <a href="{{ v.get_absolute_url() }}">{{ v.title }}</a>
             {% if show_category %}
-                &mdash;
-                <a href="{{ v.category.get_absolute_url() }}">{{ v.category.title }}</a>
+                <small>
+                    &mdash; <a href="{{ v.category.get_absolute_url() }}">{{ v.category.title }}</a>
+                </small>
             {% endif %}
-        </div>
-        <div>
+        </h4>
+        <p>
             {% if v.speakers.all() %}
                 {% set pipe = joiner(", ") %}
                 {% for s in v.speakers.all() -%}
                 {{ pipe() }}<a href="{{ s.get_absolute_url() }}">{{ s.name }}</a>
                 {%- endfor %}
             {% endif %}
-        </div>
-        <div>
+        </p>
+        <p>
             {% if v.recorded %}
-                <small>{{ v.recorded | datetime("%d.%m.%Y") }}</small>
+                {{ v.recorded | datetime("%d.%m.%Y") }}
             {% else %}
-                <small>{{ v.added | datetime("%d.%m.%Y") }}</small>
+                {{ v.added | datetime("%d.%m.%Y") }}
             {% endif %}
-        </div>
-        <div>
+        </p>
+        <p>
             {% if v.summary %}
                 {{ v.summary|md }}
             {% endif %}
-        </div>
+        </p>
     </div>
 </div>
 {%- endmacro %}
