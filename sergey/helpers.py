@@ -22,6 +22,6 @@ def md(text):
         markdown.markdown(
             text,
             output_format='html5',
-            extensions=['sergey.urlize'],
+            extensions=['sergey.urlize', 'nl2br'],
             safe_mode='replace',
             html_replacement_text='[HTML REMOVED]'))
