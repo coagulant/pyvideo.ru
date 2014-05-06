@@ -4,10 +4,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-from richard.urls import urlpatterns
 from richard.videos.sitemaps import CategorySitemap, SpeakerSitemap, VideoSitemap
 from sergey.views import SpeakerList
 
+
+admin.autodiscover()
 
 sitemaps = {
     'category': CategorySitemap,

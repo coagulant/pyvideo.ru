@@ -44,3 +44,5 @@ SUIT_CONFIG = {
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/admin/'
 ENABLE_METRICS = False
+
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
