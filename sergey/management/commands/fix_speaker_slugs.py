@@ -13,6 +13,9 @@ class Command(BaseCommand):
 
         for speaker in Speaker.objects.all():
             old_slug = speaker.slug
-            fixed_slug = slugify(unidecode(speaker.name))
-            speaker.save()
-            self.stdout.write(u'Changed slug for %s "%s" => %s\n' % (speaker.name, old_slug, fixed_slug))
+            try:
+                speaker.slug = slugify(unidecode(speaker.name))
+                speaker.save()
+                self.stdout.write(u'Changed slug for %s "%s" => %s\n' % (speaker.name, old_slug, speaker.slug))
+            except Exception:
+                self.stdout.write(u'Problem fixing slug for %s\n' % speaker.name)
