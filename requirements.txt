@@ -27,3 +27,4 @@ simplejson==3.3.0
 django-suit==0.2.1
 Embedly==0.4.4
 Unidecode==0.04.16
+python-slugify==0.0.7
