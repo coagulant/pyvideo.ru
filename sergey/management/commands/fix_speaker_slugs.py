@@ -1,6 +1,6 @@
 # coding: utf-8
 from django.core.management import BaseCommand
-from django.template.defaultfilters import slugify
+from slugify import slugify
 from unidecode import unidecode
 
 from richard.videos.models import Speaker
@@ -14,7 +14,7 @@ class Command(BaseCommand):
         for speaker in Speaker.objects.all():
             old_slug = speaker.slug
             try:
-                speaker.slug = slugify(unidecode(speaker.name))
+                speaker.slug = slugify(speaker.name)
                 speaker.save()
                 self.stdout.write(u'Changed slug for %s "%s" => %s\n' % (speaker.name, old_slug, speaker.slug))
             except Exception:
