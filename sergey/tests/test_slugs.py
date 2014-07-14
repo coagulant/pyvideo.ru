@@ -2,12 +2,15 @@
 from __future__ import unicode_literals
 
 from django import test
+from slugify import slugify
 
 from richard.videos.models import Category, Video, Speaker
 
 
-class CategorySlugTestCase(test.TestCase):
-
+class PythonSlugTestCase(test.TestCase):
+    """
+    Test python-slugify behaves as expected
+    """
     slugs = (
         ('Boston Python Meetup', 'boston-python-meetup'),
         ('Chicago Djangonauts', 'chicago-djangonauts'),
@@ -28,27 +31,7 @@ class CategorySlugTestCase(test.TestCase):
         ('Ежегодная встреча джангонавтов 2050', 'ezhegodnaia-vstrecha-dzhangonavtov-2050'),
 
         ('Associação Python Brasil', 'associacao-python-brasil'),
-    )
 
-    def test_known_values(self):
-        for title, slug in self.slugs:
-            category = Category.objects.create(title=title)
-            self.assertEqual(Category.objects.get(pk=category.pk).slug, slug)
-
-    def test_category_slug_field_values_are_enforced_to_be_unique(self):
-        category = Category.objects.create(title='Foo Bar')
-        self.assertEqual(Category.objects.get(pk=category.pk).slug, 'foo-bar')
-
-        category = Category.objects.create(title='Foo  Bar')
-        self.assertEqual(Category.objects.get(pk=category.pk).slug, 'foo-bar-0')
-
-        category = Category.objects.create(title='Foo   Bar')
-        self.assertEqual(Category.objects.get(pk=category.pk).slug, 'foo-bar-1')
-
-
-class SpeakerSlugTestCase(test.TestCase):
-
-    slugs = (
         ('Amaury Forgeot d\'Arc', 'amaury-forgeot-darc'),
         ('Amir Salihefendic', 'amir-salihefendic'),
         ('Andrew Godwin', 'andrew-godwin'),
@@ -84,27 +67,7 @@ class SpeakerSlugTestCase(test.TestCase):
         ('J Page', 'j-page'),
         ('Robert E Brewer', 'robert-e-brewer'),
         ('Russell Keith-Magee', 'russell-keith-magee'),
-    )
 
-    def test_known_values(self):
-        for name, slug in self.slugs:
-            speaker = Speaker.objects.create(name=name)
-            self.assertEqual(Speaker.objects.get(pk=speaker.pk).slug, slug)
-
-    def test_speaker_slug_field_values_are_enforced_to_be_unique(self):
-        speaker = Speaker.objects.create(name='Foo Bar Ham')
-        self.assertEqual(Speaker.objects.get(pk=speaker.pk).slug, 'foo-bar-ham')
-
-        speaker = Speaker.objects.create(name='Foo-Bar Ham')
-        self.assertEqual(Speaker.objects.get(pk=speaker.pk).slug, 'foo-bar-ham-0')
-
-        speaker = Speaker.objects.create(name='Foo-Bar-Ham')
-        self.assertEqual(Speaker.objects.get(pk=speaker.pk).slug, 'foo-bar-ham-1')
-
-
-class VideoSlugTestCase(test.TestCase):
-
-    slugs = (
         ('Lighting Talks Андрей Светлов',
             'lighting-talks-andrei-svetlov'),
 
@@ -145,10 +108,10 @@ class VideoSlugTestCase(test.TestCase):
             'obzor-freimvorka-twisted'),
 
         ('Работаем с RabbitMQ в Python используя kombu + gevent',
-            'rabotaem-s-rabbitmq-v-python-ispolzuia-kombu-ge'),
+            'rabotaem-s-rabbitmq-v-python-ispolzuia-kombu-gevent'),
 
         ('Асинхронное распределенное выполнение задач. Stdlib, Celery, RQ и собственные велосипеды',
-            'asinkhronnoe-raspredelennoe-vypolnenie-zadach-stdl'),
+            'asinkhronnoe-raspredelennoe-vypolnenie-zadach-stdlib-celery-rq-i-sobstvennye-velosipedy'),
 
         ('Введение в GIL и новый GIL',
             'vvedenie-v-gil-i-novyi-gil'),
@@ -183,26 +146,74 @@ class VideoSlugTestCase(test.TestCase):
         ('Astropy and astronomical tools Part I',
             'astropy-and-astronomical-tools-part-i'),
 
-        ('Bayesian Statistical Analysis using Python - Part 1',
-            'bayesian-statistical-analysis-using-python-part'),
-
-        ('Bayesian Statistical Analysis using Python - Part 2',
-            'bayesian-statistical-analysis-using-python-part-0'),
-
-        ('Bayesian Statistical Analysis using Python - Part 3',
-            'bayesian-statistical-analysis-using-python-part-1'),
-
-        ('Geospatial data in Python: Database, Desktop, and the Web part 1',
-            'geospatial-data-in-python-database-desktop-and'),
-
-        ('Geospatial data in Python: Database, Desktop, and the Web part 2',
-            'geospatial-data-in-python-database-desktop-and-0'),
-
-        ('Geospatial data in Python: Database, Desktop and the Web - Part 3',
-            'geospatial-data-in-python-database-desktop-and-1'),
-
         ('HDF5 is for Lovers, Tutorial part 1',
             'hdf5-is-for-lovers-tutorial-part-1'),
+    )
+
+    def test_known_values(self):
+        for title, slug in self.slugs:
+            self.assertEqual(slugify(title), slug)
+
+
+class CategorySlugTestCase(test.TestCase):
+
+    slugs = (
+        ('Boston Python Meetup', 'boston-python-meetup'),
+        ('Яндекс.Events', 'iandeks-events'),
+        ('Piter Py – первая Python-конференция на Неве', 'piter-py-pervaia-python-konferentsiia-na-neve')
+    )
+
+    def test_known_values(self):
+        for title, slug in self.slugs:
+            category = Category.objects.create(title=title)
+            self.assertEqual(Category.objects.get(pk=category.pk).slug, slug)
+
+    def test_category_slug_field_values_are_enforced_to_be_unique(self):
+        category = Category.objects.create(title='Foo Bar')
+        self.assertEqual(Category.objects.get(pk=category.pk).slug, 'foo-bar')
+
+        category = Category.objects.create(title='Foo  Bar')
+        self.assertEqual(Category.objects.get(pk=category.pk).slug, 'foo-bar-0')
+
+        category = Category.objects.create(title='Foo   Bar')
+        self.assertEqual(Category.objects.get(pk=category.pk).slug, 'foo-bar-1')
+
+
+class SpeakerSlugTestCase(test.TestCase):
+
+    slugs = (
+        ('Dr. Russell Keith-Magee', 'dr-russell-keith-magee'),
+        ('Łukasz Langa', 'lukasz-langa'),
+        ('Руслан Гроховецкий', 'ruslan-grokhovetskii'),
+    )
+
+    def test_known_values(self):
+        for name, slug in self.slugs:
+            speaker = Speaker.objects.create(name=name)
+            self.assertEqual(Speaker.objects.get(pk=speaker.pk).slug, slug)
+
+    def test_speaker_slug_field_values_are_enforced_to_be_unique(self):
+        speaker = Speaker.objects.create(name='Foo Bar Ham')
+        self.assertEqual(Speaker.objects.get(pk=speaker.pk).slug, 'foo-bar-ham')
+
+        speaker = Speaker.objects.create(name='Foo-Bar Ham')
+        self.assertEqual(Speaker.objects.get(pk=speaker.pk).slug, 'foo-bar-ham-0')
+
+        speaker = Speaker.objects.create(name='Foo-Bar-Ham')
+        self.assertEqual(Speaker.objects.get(pk=speaker.pk).slug, 'foo-bar-ham-1')
+
+
+class VideoSlugTestCase(test.TestCase):
+
+    slugs = (
+        ('Auto scaling on the Cloud the right way',
+            'auto-scaling-on-the-cloud-the-right-way'),
+
+        ('Нагрузочное тестирование с помощью Яндекс.Танка',
+            'nagruzochnoe-testirovanie-s-pomoshchiu-iandeks-tanka'),
+
+        ('Pathlib. Маленькие вкусности Python 3.4',
+            'pathlib-malenkie-vkusnosti-python-3-4'),
     )
 
     def setUp(self):
