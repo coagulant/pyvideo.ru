@@ -1,4 +1,5 @@
-{#
+{% extends "base.html" %}
+{% comment %}
 # Copyright (C) 2013 Ilya Baryshev
 # richard -- video index system
 # Copyright (C) 2012, 2013 richard contributors.  See AUTHORS.
@@ -15,34 +16,33 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
--#}
-{% extends "base.html" %}
+{% endcomment %}
+{% load video_summary %}
+{% load sergey %}
 
-
-{% block title %}{{ header(category.title) }}{% endblock %}
+{% block title %}{% header category.title %}{% endblock %}
 
 {% block additional_head %}
-    {{ super() }}
+    {{ block.super }}
     <link rel="alternate" type="application/rss+xml"
-          href="{{ url('videos-category-videos-feed', category_id=category.pk, slug=category.slug) }}"/>
+          href="{% url 'videos-category-videos-feed' category_id=category.pk slug=category.slug %}"/>
 {% endblock %}
 
-{% import "videos/macros.html" as macros with context %}
 {% block content %}
 
     <ul class="nav nav-pills pull-right">
-        <li class="{{ 'active' if view == 'videos' else '' }}"><a
-                href="{{ url('videos-category', category_id=category.pk, slug=category.slug) }}">Видео</a></li>
-        {# <li class="{{ 'active' if view == 'files' else '' }}"><a href="{{ url('videos-category-files', category_id=category.pk, slug=category.slug) }}">Files</a></li> -#}
-        <li><a href="{{ url('videos-category-videos-feed', category_id=category.pk, slug=category.slug) }}">RSS</a></li>
+        <li class="{% ifequal view 'videos' %}active{% endifequal %}"><a
+                href="{% url 'videos-category' category_id=category.pk slug=category.slug %}">Видео</a></li>
+        {# <li class="{% ifequal view 'files' %}active{% endifequal %}"><a href="{% url 'videos-category-files' category_id=category.pk slug=category.slug %}">Files</a></li> -#}
+        <li><a href="{% url 'videos-category-videos-feed' category_id=category.pk slug=category.slug %}">RSS</a></li>
     </ul>
 
     <div>
         <h1>{{ category.title }} {% if category.start_date %}
-            <small>{{ category.start_date|datetime('%d.%m.%Y') }}</small>{% endif %}
+            <small>{{ category.start_date|date:"d.m.Y" }}</small>{% endif %}
             {% if user.is_staff %}
                 <small>
-                    <a href="{{ url('admin:videos_category_change', category.id) }}"><i class="icon-edit"></i> edit</a>
+                    <a href="{% url 'admin:videos_category_change' category.id %}"><i class="icon-edit"></i> edit</a>
                 </small>
             {% endif %}
         </h1>
@@ -64,7 +64,7 @@
 
     {% if view == 'videos' %}
         {% for v in videos %}
-            {{ macros.video_summary(v) }}
+            {% video_summary v False %}
         {% endfor %}
     {% elif view == 'files' %}
         <table class="table">
@@ -76,23 +76,19 @@
                 <tr>
                     <td>
                         {{ v.title }}
-                        {% if v.speakers.all() %}
+                        {% with speakers=v.speakers.all %}
+                        {% if speakers %}
                             &mdash;
-                            {% set pipe = joiner(", ") %}
-                            {% for s in v.speakers.all() -%}
-                            {{ pipe() }} {{ s.name }}
-                            {%- endfor %}
+                            {% for s in speakers %}{% if not forloop.first %}, {% endif %}{{ s.name }}{% endfor %}
                         {% endif %}
+                        {% endwith %}
                     </td>
                     <td>
-                        {% set formats = v.get_available_formats(download=True) %}
-                        {% if formats %}
-                            {% for format in formats %}
-                                <a href="{{ format.url }}">{{ format.mime_type }}</a>
-                            {% endfor %}
-                        {% else %}
+                        {% for format in v.get_download_formats %}
+                            <a href="{{ format.url }}" property="contentUrl">{{ format.display }}</a>
+                        {% empty %}
                             No downloadable files.
-                        {% endif %}
+                        {% endfor %}
                     </td>
                 </tr>
             {% endfor %}

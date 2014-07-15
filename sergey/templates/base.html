@@ -1,4 +1,4 @@
-{#
+{% comment %}
 # Copyright (C) 2013 Ilya Baryshev
 # richard -- video index system
 # Copyright (C) 2012, 2013 richard contributors.  See AUTHORS.
@@ -15,19 +15,23 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
--#}
+{% endcomment %}
+{% load static %}
+{% load browserid %}
+{% load sergey %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" href="{{ settings.STATIC_URL }}bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="{{ settings.STATIC_URL }}bootstrap/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/richard.css">
-    <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/pyvideo.css">
-    <link rel="stylesheet" href="{{ settings.STATIC_URL }}css/social.css">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/richard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pyvideo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/social.css' %}">
+    {% browserid_css %}
     <link rel="search" type="application/opensearchdescription+xml" title="{{ settings.SITE_TITLE }} search"
-          href="{{ url('videos-opensearch') }}">
-    <title>{% block title %}{{ header('Видео о python на русском') }}{% endblock %}</title>
+          href="{% url 'videos-opensearch' %}">
+    <title>{% block title %}{% header 'Видео о python на русском' %}{% endblock %}</title>
     {% if meta %}
         {% for meta_name, meta_content in meta %}
             <meta name="{{ meta_name }}" content="{{ meta_content }}">
@@ -36,7 +40,8 @@
     {% block additional_head %}{% endblock %}
 </head>
 <body>
-    {{ browserid_info()|safe }}
+    {% csrf_token %}
+    {% browserid_info %}
     <section class="page">
         <header class="page__header navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
@@ -51,15 +56,15 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="page__logo brand" href="{{ url('home') }}">{{ settings.SITE_TITLE }}</a>
+                            <a class="page__logo brand" href="{% url 'home' %}">{{ settings.SITE_TITLE }}</a>
                             <div class="nav-collapse collapse">
                                 <ul class="nav">
-                                    <li><a href="{{ url('videos-category-list') }}">События</a></li>
-                                    <li><a href="{{ url('videos-speaker-list') }}">Люди</a></li>
+                                    <li><a href="{% url 'videos-category-list' %}">События</a></li>
+                                    <li><a href="{% url 'videos-speaker-list' %}">Люди</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <form class="navbar-search span3" action="{{ url('videos-search') }}">
+                        <form class="navbar-search span3" action="{% url 'videos-search' %}">
                             <input type="hidden" name="models" value="videos.video">
                             <input type="text"
                                    class="page__search-query search-query input-block-level"
@@ -73,18 +78,18 @@
         </header>
 
         <div id="content" class="container-fluid">
-            {% if notifications -%}
+            {% if notifications %}
             <div class="row-fluid">
                 <div class="span12">
-                    {% for n in notifications -%}
+                    {% for n in notifications %}
                     <div class="alert alert-info">
                         <i class="icon-info-sign"></i> <strong>{{ n.interjection }}</strong>
                         {{ n.text|md }}
                     </div>
-                    {%- endfor %}
+                    {% endfor %}
                 </div>
             </div>
-            {%- endif %}
+            {% endif %}
 
             {% block content %}{% endblock %}
         </div>
@@ -133,9 +138,9 @@
         {% if settings.ENABLE_METRICS %}
             {% include 'blocks/metrika.html' %}
         {% endif %}
-        <script type="text/javascript" src="{{ settings.STATIC_URL }}js/jquery-1.7.2.min.js"></script>
-        <script type="text/javascript" src="{{ settings.STATIC_URL }}js/social.js"></script>
-        <script type="text/javascript" src="{{ settings.STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{% static 'jquery-1.11.0/jquery-1.11.0.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bootstrap-3.1.1/js/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/social.js' %}"></script>
     {% endblock %}
 </body>
 </html>

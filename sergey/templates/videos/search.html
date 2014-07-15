@@ -1,4 +1,5 @@
-{#
+{% extends "base.html" %}
+{% comment %}
 # Copyright (C) 2013 Ilya Baryshev
 # richard -- video index system
 # Copyright (C) 2012, 2013 richard contributors.  See AUTHORS.
@@ -15,23 +16,22 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
--#}
-{% extends "base.html" %}
-
+{% endcomment %}
+{% load video_summary %}
+{% load sergey %}
 
 {% block title %}
     {% if query %}
-        {{ header('Видео: ' + query) }}
+        {% header 'Видео: ' query %}
     {% else %}
-        {{ header('Поиск') }}
+        {% header 'Поиск' %}
     {% endif %}
 {% endblock %}
-{% import "videos/macros.html" as macros with context %}
 {% block content %}
 
     <div class="row-fluid">
         <div class="span6 offset3">
-            <form class="form-search" method="get" action="/search/">
+            <form class="form-search" method="get" action="{% url 'videos-search' %}">
                 <input type="hidden" name="models" value="videos.video">
                 <div class="input-append search-form-input">
                     <input type="text" class="input input-block-level search-query" name="q" value="{{ query }}">
@@ -51,10 +51,10 @@
                         {% if facet_counts %}
                             <p class="lead">События</p>
                             <ul class="unstyled">
-                                {% for title, count in facet_counts['category'] %}
+                                {% for title, count in facet_counts.category %}
                                     <li class="category">
                                         <span class="category__counter badge pull-right">{{ count }}</span>
-                                        <a href="{{ request.build_absolute_uri() }}&amp;category={{ title }}">{{ title }}</a>
+                                        <a href="{{ request.build_absolute_uri }}&amp;category={{ title }}">{{ title }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -65,7 +65,7 @@
                     <p class="lead">Найдено {{ page.paginator.count }} видео</p>
 
                     {% for result in page.object_list %}
-                        {{ macros.video_summary(result.object, false, true) }}
+                        {% video_summary result.object True %}
                     {% endfor %}
                 </div>
             {% else %}
@@ -74,19 +74,19 @@
                 </div>
             {% endif %}
 
-            {% if page.has_previous() or page.has_next() %}
+            {% if page.has_previous or page.has_next %}
                 <div class="centered">
                     <div class="pager">
                         <ul>
-                            {% if page.has_previous() %}
-                                <li><a href="?q={{ query }}&amp;page={{ page.previous_page_number() }}">&laquo;
+                            {% if page.has_previous %}
+                                <li><a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">&laquo;
                                     Назад</a></li>
                             {% else %}
                                 <li class="disabled"><a>&laquo; Назад</a></li>
                             {% endif %}
 
-                            {% if page.has_next() %}
-                                <li><a href="?q={{ query }}&amp;page={{ page.next_page_number() }}"> Вперёд &raquo;</a>
+                            {% if page.has_next %}
+                                <li><a href="?q={{ query }}&amp;page={{ page.next_page_number }}"> Вперёд &raquo;</a>
                                 </li>
                             {% else %}
                                 <li class="disabled"><a>Вперёд &raquo;</a></li>
