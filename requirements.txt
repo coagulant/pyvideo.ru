@@ -14,7 +14,6 @@ fancy-tag==0.2.0
 gunicorn==0.17.4
 html5lib==0.999
 httplib2==0.9
-pip-tools==0.3.4
 psycopg2==2.5
 pyelasticsearch==0.5
 python-slugify==0.0.7
