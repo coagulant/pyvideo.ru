@@ -1,13 +1,11 @@
 Django==1.6.5
 Embedly==0.4.4
 Markdown==2.4.1
-South==1.0
+South==0.8.4
 Unidecode==0.04.16
 Whoosh==2.5.7
 bleach==1.4
 dj-database-url==0.3.0
-django-browserid==0.10.1
-django-grappelli==2.5.2
 django-haystack==2.1.0
 django-suit==0.2.1
 djangorestframework==2.3.10
@@ -22,6 +20,6 @@ pyelasticsearch==0.5
 python-slugify==0.0.7
 raven==3.3.7
 requests==2.3.0
--e git+https://github.com/willkg/richard@1e06ecef3a1d831b3e05a65de42ecbb3809021bf#egg=richard-origin/master
+-e git+https://github.com/willkg/richard@1e06ecef3a1d831b3e05a65de42ecbb3809021bf#egg=richard
 simplejson==3.5.3
 six==1.7.3
