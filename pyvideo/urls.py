@@ -18,14 +18,12 @@ sitemaps = {
 
 urlpatterns = patterns('',
     url(r'^$', 'richard.base.views.home', name='home'),
-    url(r'^login/$', TemplateView.as_view(template_name='login.html'), name='login'),
     url(r'^login-failure$', 'richard.base.views.login_failure', name='login_failure'),
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^pages/', include('richard.pages.urls')),
     url(r'^speaker/$', SpeakerList.as_view(), name='videos-speaker-list'),
     url(r'', include('richard.videos.urls')),
-    url(r'^browserid/', include('django_browserid.urls')),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
