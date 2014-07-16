@@ -23,7 +23,7 @@ INSTALLED_APPS = (
     'suit',
     'sergey',
     # exclude unwanted richard apps
-) + tuple(app for app in INSTALLED_APPS if app not in ('grappelli',))
+) + tuple(app for app in INSTALLED_APPS if app not in ('grappelli', 'django_browserid',))
 
 DATABASES = {
     'default': {

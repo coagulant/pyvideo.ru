@@ -17,7 +17,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 {% endcomment %}
 {% load static %}
-{% load browserid %}
 {% load sergey %}
 <!DOCTYPE html>
 <html>
@@ -28,7 +27,6 @@
     <link rel="stylesheet" href="{% static 'css/richard.css' %}">
     <link rel="stylesheet" href="{% static 'css/pyvideo.css' %}">
     <link rel="stylesheet" href="{% static 'css/social.css' %}">
-    {% browserid_css %}
     <link rel="search" type="application/opensearchdescription+xml" title="{{ settings.SITE_TITLE }} search"
           href="{% url 'videos-opensearch' %}">
     <title>{% block title %}{% header 'Видео о python на русском' %}{% endblock %}</title>
@@ -40,8 +38,6 @@
     {% block additional_head %}{% endblock %}
 </head>
 <body>
-    {% csrf_token %}
-    {% browserid_info %}
     <section class="page">
         <header class="page__header navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
