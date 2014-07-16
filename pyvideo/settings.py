@@ -16,19 +16,14 @@ WSGI_APPLICATION = 'pyvideo.wsgi.application'
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, 'templates'),
 )
-TEMPLATE_CONTEXT_PROCESSORS += (
-    'django.core.context_processors.request',
-)
-JINGO_EXCLUDE_APPS += (
-    'suit',
-)
 STATIC_ROOT = os.path.join(PROJECT_PATH, '../sergey/static')
 
 INSTALLED_APPS = (
     'raven.contrib.django.raven_compat',
     'suit',
     'sergey',
-) + INSTALLED_APPS
+    # exclude unwanted richard apps
+) + tuple(app for app in INSTALLED_APPS if app not in ('grappelli',))
 
 DATABASES = {
     'default': {

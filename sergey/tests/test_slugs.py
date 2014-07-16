@@ -221,15 +221,15 @@ class VideoSlugTestCase(test.TestCase):
 
     def test_known_values(self):
         for title, slug in self.slugs:
-            video = self.category.video_set.create(title=title)
+            video = self.category.videos.create(title=title)
             self.assertEqual(Video.objects.get(pk=video.pk).slug, slug)
 
     def test_video_slugs_are_enforced_to_be_unique(self):
-        video = self.category.video_set.create(title='Foo Bar in Baz')
+        video = self.category.videos.create(title='Foo Bar in Baz')
         self.assertEqual(Video.objects.get(pk=video.pk).slug, 'foo-bar-in-baz')
 
-        video = self.category.video_set.create(title='Foo  Bar  in  Baz')
+        video = self.category.videos.create(title='Foo  Bar  in  Baz')
         self.assertEqual(Video.objects.get(pk=video.pk).slug, 'foo-bar-in-baz-0')
 
-        video = self.category.video_set.create(title='Foo-Bar-in-Baz')
+        video = self.category.videos.create(title='Foo-Bar-in-Baz')
         self.assertEqual(Video.objects.get(pk=video.pk).slug, 'foo-bar-in-baz-1')

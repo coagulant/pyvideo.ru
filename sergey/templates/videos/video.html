@@ -1,4 +1,5 @@
-{#
+{% extends "base.html" %}
+{% comment %}
 # Copyright (C) 2013 Ilya Baryshev
 # richard -- video index system
 # Copyright (C) 2012, 2013 richard contributors.  See AUTHORS.
@@ -15,29 +16,57 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
--#}
-{% extends "base.html" %}
+{% endcomment %}
+{% load sergey %}
 
-
-{% block title %}{{ header(v.title) }}{% endblock %}
-{% import "videos/video_display.html" as videodisplay with context %}
+{% block title %}{% header v.title %}{% endblock %}
 {% block content %}
 
-    {% if not v.is_live() %}
+    {% if not v.is_live %}
         <div class="alert alert-error">
             <i class="icon-warning-sign"></i> <strong>Note:</strong>
             This video is in <strong>draft</strong> mode--it is not live.
         </div>
     {% endif %}
 
-    <div class="row">
+    <div class="row" vocab="http://schema.org" typeof="VideoObject">
         <div id="videobox" class="span12">
-            {{ videodisplay.display(embed, available_formats) }}
+
+            <div class="clearfix">
+              <div class="videobox-inner">
+                {% if use_amara %}
+                  {% if video_url %}
+                    <div class="amara-embed" data-height="480px" data-width="854px" data-url="{{ video_url }}"></div>
+                  {% else %}
+                    <p>No video to show.</p>
+                  {% endif %}
+                {% else %}
+                  {% if html5_formats %}
+                    <video id="{{ v.slug }}" controls>
+                      {% for media in html5_formats %}
+                        <source src="{{ media.url }}" type="{{ media.mime_type }}">
+                      {% endfor %}
+                      {% if embed %}
+                        {{ embed|safe }}
+                      {% endif %}
+                    </video>
+                  {% elif embed %}
+                    {{ embed|safe }}
+                  {% else %}
+                    <p>No video to show.</p>
+                  {% endif %}
+                {% endif %}
+              </div>
+            </div>
+
             <div class="section">
                 <h3>{{ v.title }}{% if user.is_staff %}
-                    <a href="{{ url('admin:videos_video_change', v.id) }}"><i class="icon-edit"></i> edit</a>
+                    <a href="{% url 'admin:videos_video_change' v.id %}"><i class="icon-edit"></i> edit</a>
                 {% endif %}</h3>
+                <link property="thumbnailUrl" href="{{ v.get_thumbnail_url }}"/>
+                <link property="sameAs" href="{{ v.get_absolute_url }}"/>
             </div>
+
         </div>
     </div>
 
@@ -49,27 +78,23 @@
                 </div>
             {% endif %}
 
-            <p title="Last Updated {{ v.updated | datetime("%d.%m.%Y") }}" class="muted">
-                {% set speakers = v.speakers.all() %}
-                {% if speakers %}
-                    {% for s in speakers %}
-                        <a href="{{ s.get_absolute_url() }}">{{ s.name }}</a>
-                    {% endfor %}
-                {% else %}
+            <p title="Last Updated {{ v.updated|date:"d.m.Y" }}" class="muted">
+                {% for s in v.speakers.all %}
+                    <a href="{{ s.get_absolute_url }}">{{ s.name }}</a>
+                {% empty %}
                     Unknown
-                {% endif %}
-                <span class="pull-right">{{ v.recorded | datetime("%d.%m.%Y") }}</span>
+                {% endfor %}
+                <span class="pull-right">{{ v.recorded|date:"d.m.Y" }}</span>
             </p>
 
-            {% with urls = v.related_urls.all() %}
+            {% with urls=v.related_urls.all %}
                 {% if urls %}
                     <div class="section">
                         <h4>Related URLs</h4>
                         <ul>
                             {% for u in urls %}
                                 <li><a href="{{ u.url }}">
-                                    {% if u.description %}{{ u.description }} ({{ u.display() }}){% else %}{{ u.display(
-                                        ) }}{% endif %}</a></li>
+                                    {% if u.description %}{{ u.description }} ({{ u.display }}){% else %}{{ u.display }}{% endif %}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -80,14 +105,11 @@
                 {{ v.description|md }}
             {% endif %}
 
-            {% set tags = v.tags.all() %}
-            {% if tags %}
-                {% for t in tags %}
-                    <span class="label label-info">{{ t.tag }}</span>
-                {% endfor %}
-            {% else %}
+            {% for t in tags %}
+                <span class="label label-info">{{ t.tag }}</span>
+            {% empty %}
                 No tags
-            {% endif %}
+            {% endfor %}
 
         </div>
 
@@ -98,7 +120,7 @@
                 <dl>
                     <dt>Событие</dt>
                     <dd>
-                        <a href="{{ v.category.get_absolute_url() }}">{{ v.category.title }}</a>
+                        <a href="{{ v.category.get_absolute_url }}">{{ v.category.title }}</a>
                     </dd>
 
                     <dt>Источник</dt>

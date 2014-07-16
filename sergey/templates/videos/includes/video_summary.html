@@ -1,4 +1,4 @@
-{#
+{% comment %}
 # Copyright (C) 2013 Ilya Baryshev
 # richard -- video index system
 # Copyright (C) 2012, 2013 richard contributors.  See AUTHORS.
@@ -15,42 +15,39 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
--#}
-{% macro video_summary(v, wide, show_category) -%}
-{% set span = 'span10' if wide else 'span7' %}
+{% endcomment %}
+{% load sergey %}
 <div class="media">
-    <a class="pull-left" href="{{ v.get_absolute_url() }}" class="thumbnail">
-        <img class="media-object" width="{{ v.thumbnail_width }}" height="{{ v.thumbnail_height }}" src="{{ v.get_thumbnail_url() }}" />
+    <a class="pull-left" href="{{ video.get_absolute_url }}" class="thumbnail">
+        <img class="media-object" width="{{ video.thumbnail_width }}" height="{{ video.thumbnail_height }}" src="{{ video.get_thumbnail_url }}" />
     </a>
     <div class="media-body">
         <h4 class="media-heading">
-            <a href="{{ v.get_absolute_url() }}">{{ v.title }}</a>
+            <a href="{{ video.get_absolute_url }}">{{ video.title }}</a>
             {% if show_category %}
                 <small>
-                    &mdash; <a href="{{ v.category.get_absolute_url() }}">{{ v.category.title }}</a>
+                    &mdash; <a href="{{ video.category.get_absolute_url }}">{{ video.category.title }}</a>
                 </small>
             {% endif %}
         </h4>
         <p>
-            {% if v.speakers.all() %}
-                {% set pipe = joiner(", ") %}
-                {% for s in v.speakers.all() -%}
-                {{ pipe() }}<a href="{{ s.get_absolute_url() }}">{{ s.name }}</a>
-                {%- endfor %}
+            {% with speakers=video.speakers.all %}
+            {% if speakers %}
+                {% for speaker in speakers %}{% if not forloop.first %}, {% endif %}<a href="{{ speaker.get_absolute_url }}">{{ speaker.name }}</a>{% endfor %}
             {% endif %}
+            {% endwith %}
         </p>
         <p>
-            {% if v.recorded %}
-                {{ v.recorded | datetime("%d.%m.%Y") }}
+            {% if video.recorded %}
+                {{ video.recorded|date:"d.m.Y" }}
             {% else %}
-                {{ v.added | datetime("%d.%m.%Y") }}
+                {{ video.added|date:"d.m.Y" }}
             {% endif %}
         </p>
         <p>
-            {% if v.summary %}
-                {{ v.summary|md }}
+            {% if video.summary %}
+                {{ video.summary|md }}
             {% endif %}
         </p>
     </div>
 </div>
-{%- endmacro %}

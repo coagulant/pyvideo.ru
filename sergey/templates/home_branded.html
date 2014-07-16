@@ -1,4 +1,5 @@
-{#
+{% extends "base.html" %}
+{% comment %}
 # Copyright (C) 2013 Ilya Baryshev
 # richard -- video index system
 # Copyright (C) 2012, 2013 richard contributors.  See AUTHORS.
@@ -15,9 +16,8 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
--#}
-{% extends "base.html" %}
-
+{% endcomment %}
+{% load sergey %}
 
 {% block content %}
     {% block contenthero %}
@@ -37,44 +37,46 @@
     <div class="row-fluid">
         <div class="span6">
             <h3>События
-                <small><a class="feed" href="{{ url('videos-category-feed') }}"></a></small>
+                <small><a class="feed" href="{% url 'videos-category-feed' %}"></a></small>
             </h3>
 
             {% if latest_categories %}
                 <ul class="unstyled pull-left">
                     {% for cat in latest_categories %}
-                        {% if user.is_staff or cat.video_set.live().count() > 0 %}
+                        {% with count=cat.videos.live.count %}
+                        {% if user.is_staff or count > 0 %}
                             <li class="category">
-                                <span class="category__counter badge pull-right">{{ cat.video_set.live().count() }}</span>
-                                <a href="{{ cat.get_absolute_url() }}">{{ cat.title }}</a>
+                                <span class="category__counter badge pull-right">{{ count }}</span>
+                                <a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a>
                             </li>
                         {% endif %}
+                        {% endwith %}
                     {% endfor %}
                 </ul>
             {% endif %}
 
             {% if latest_categories|length > 10 %}
                 <p>
-                    <a href="{{ url('videos-category-list') }}">See all categories...</a>
+                    <a href="{% url 'videos-category-list' %}">Перейти к списку событий...</a>
                 </p>
             {% endif %}
         </div>
         <div class="span6">
             <h3>Последние видеозаписи
-                <small><a class="feed" href="{{ url('videos-new-feed') }}"></a></small>
+                <small><a class="feed" href="{% url 'videos-new-feed' %}"></a></small>
             </h3>
 
             {% if latest_videos %}
                 <ul class="unstyled">
                     {% for video in latest_videos %}
                         <li>
-                            <a class="video-link" href="{{ video.get_absolute_url() }}">{{ video.title }}</a>
+                            <a class="video-link" href="{{ video.get_absolute_url }}">{{ video.title }}</a>
                         </li>
                     {% endfor %}
                 </ul>
             {% endif %}
             <p>
-                <a class="label" href="{{ url('videos-search') }}">
+                <a class="label" href="{% url 'videos-search' %}">
                     <i class="icon-search"></i>
                     Искать видео
                 </a>

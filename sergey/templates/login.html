@@ -1,31 +1,32 @@
 {% extends "base.html" %}
-
+{% load static %}
+{% load browserid %}
 
 {% block content %}
-    {% if user.is_authenticated() %}
+    {% if user.is_authenticated %}
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Greetings {{ user.username }}! <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
                 {% if user.is_superuser %}
-                    <li><a href="{{ url('admin:index') }}">Admin</a></li>
+                    <li><a href="{% url 'admin:index' %}">Admin</a></li>
                 {% endif %}
-                <li>{{ browserid_logout(text='Sign out')|safe }}</li>
+                <li>{% browserid_logout text='Sign out' %}</li>
             </ul>
         </li>
     {% else %}
-        <li>{{ browserid_login(text='Sign in')|safe }}</li>
+        <li>{% browserid_login text='Sign in' %}</li>
 
     {% endif %}
 {% endblock %}
 
 {% block site_js %}
-    {{ super() }}
+    {{ block.super }}
     {% if not settings.BROWSERID_AUTOLOGIN %}
-        <script type="text/javascript" src="{{ settings.STATIC_URL }}browserid/browserid.js"></script>
+        <script type="text/javascript" src="{% static 'browserid/browserid.js' %}"></script>
         <script type="text/javascript" src="https://login.persona.org/include.js"></script>
     {% else %}
-        <script type="text/javascript" src="{{ settings.STATIC_URL }}js/browserid-mock.js"></script>
+        <script type="text/javascript" src="{% static 'js/browserid-mock.js' %}"></script>
     {% endif %}
 {% endblock %}
