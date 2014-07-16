@@ -1,6 +1,4 @@
 # coding: utf-8
-from __future__ import unicode_literals
-
 from django.conf import settings
 from django import template
 from django.utils.html import mark_safe
@@ -17,7 +15,7 @@ def header(*args):
     s = ''.join(args)
     if len(s) > 80:
         s = s[:80] + '...'
-    return '%s - %s' % (s, settings.SITE_TITLE)
+    return u'%s - %s' % (s, settings.SITE_TITLE)
 
 
 @register.filter
