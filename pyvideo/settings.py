@@ -32,6 +32,10 @@ DATABASES = {
     }
 }
 
+TEMPLATE_CONTEXT_PROCESSORS += (
+    'sergey.context.humor',
+)
+
 API = True
 SUIT_CONFIG = {
     'LIST_PER_PAGE': 100

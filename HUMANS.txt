@@ -1,0 +1,14 @@
+Pyvideo.ru credits
+==================
+
+Awesome "Richard" app by Will Kahn-Greene and individual contributors,
+see https://raw.githubusercontent.com/willkg/richard/master/AUTHORS
+
+Lead:
+
+* Ilya Baryshev (inception and maintenance)
+* Artyom Golikoff (desgin)
+
+Contributors:
+
+* Sergei Khoroshilov
