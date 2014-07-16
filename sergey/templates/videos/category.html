@@ -31,9 +31,9 @@
 {% block content %}
 
     <ul class="nav nav-pills pull-right">
-        <li class="{% ifequal view 'videos' %}active{% endifequal %}"><a
+        <li class="{% view == 'videos' %}active{% endif %}"><a
                 href="{% url 'videos-category' category_id=category.pk slug=category.slug %}">Видео</a></li>
-        {# <li class="{% ifequal view 'files' %}active{% endifequal %}"><a href="{% url 'videos-category-files' category_id=category.pk slug=category.slug %}">Files</a></li> -#}
+        {# <li class="{% view == 'files' %}active{% endif %}"><a href="{% url 'videos-category-files' category_id=category.pk slug=category.slug %}">Files</a></li> -#}
         <li><a href="{% url 'videos-category-videos-feed' category_id=category.pk slug=category.slug %}">RSS</a></li>
     </ul>
 
