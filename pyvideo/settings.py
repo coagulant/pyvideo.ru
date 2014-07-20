@@ -45,3 +45,5 @@ LOGIN_REDIRECT_URL = '/admin/'
 ENABLE_METRICS = False
 
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'

@@ -22,3 +22,4 @@ requests==2.3.0
 -e git+https://github.com/willkg/richard@1e06ecef3a1d831b3e05a65de42ecbb3809021bf#egg=richard
 simplejson==3.5.3
 six==1.7.3
+coveralls
