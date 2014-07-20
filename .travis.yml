@@ -7,3 +7,11 @@ script:
   - coverage run --source=sergey manage.py test
 after_success:
   - coveralls
+deploy:
+  provider: heroku
+  app: pyvideoru
+  api_key:
+      secure: QKzWENSRPE7fkr6EP4/alvo8ZOvV5OQZ7yq0BcGkpH9MpiELiaTnzp1hdaBEBbAyw5AvXO/JN1cECReUGJ94b4jebpAuxoTCOZEjiPSqvGgcGhu9Ny7udKQgr1IbFyVRlFPRjzFwmRwHotkMtZRjzKFgTW7AcIeOfliCkEjBlIQ=
+  run:
+    - "python manage.py migrate"
+    - restart
