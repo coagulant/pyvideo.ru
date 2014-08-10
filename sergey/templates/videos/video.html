@@ -105,7 +105,7 @@
                 {{ v.description|md }}
             {% endif %}
 
-            {% for t in tags %}
+            {% for t in v.tags.all %}
                 <span class="label label-info">{{ t.tag }}</span>
             {% empty %}
                 No tags
