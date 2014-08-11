@@ -3,7 +3,7 @@ from django import test
 from django.core.management import call_command
 from embedly.models import Url
 from embedly.client import Embedly
-from mock import patch
+from unittest.mock import patch
 
 from richard.videos.models import Category, Video
 

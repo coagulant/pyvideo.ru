@@ -23,4 +23,3 @@ requests==2.3.0
 simplejson==3.5.3
 six==1.7.3
 coveralls
-mock
