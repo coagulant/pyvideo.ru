@@ -22,6 +22,7 @@ INSTALLED_APPS = (
     'raven.contrib.django.raven_compat',
     'suit',
     'sergey',
+    'proposal',
     # exclude unwanted richard apps
 ) + tuple(app for app in INSTALLED_APPS if app not in ('grappelli', 'django_browserid',))
 
@@ -47,3 +48,23 @@ ENABLE_METRICS = False
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': (
+        # the json, yaml, xml parses are used for parsing video proposals
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.XMLParser',
+        'rest_framework.parsers.YAMLParser',
+
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser'
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        # the json, yaml, xml renderers are used for parsing video proposals
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.XMLRenderer',
+        'rest_framework.renderers.YAMLRenderer',
+
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    )
+}

@@ -4,7 +4,8 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - coverage run --source=sergey manage.py test
+  - coverage run --source=sergey,proposal manage.py test
+  - python manage.py review
 after_success:
   - coveralls
 deploy:
@@ -14,4 +15,5 @@ deploy:
       secure: QKzWENSRPE7fkr6EP4/alvo8ZOvV5OQZ7yq0BcGkpH9MpiELiaTnzp1hdaBEBbAyw5AvXO/JN1cECReUGJ94b4jebpAuxoTCOZEjiPSqvGgcGhu9Ny7udKQgr1IbFyVRlFPRjzFwmRwHotkMtZRjzKFgTW7AcIeOfliCkEjBlIQ=
   run:
     - "python manage.py migrate"
+    - "python manage.py review"
     - restart
