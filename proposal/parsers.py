@@ -76,6 +76,9 @@ def videos(path):
 
             # attempt to deserialize objects using assotiated serializers
             for video_path in category_path.iterdir():
+                # skip files that begin with a dot
+                if video_path.is_file() and video_path.stem.startswith('.'):
+                    continue
                 try:
                     with open(str(video_path), 'rb') as f:
                         try:
