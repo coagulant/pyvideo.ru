@@ -1,0 +1,17 @@
+title: Пример видео
+url: http://www.youtube.com/watch?v=dQw4w9WgXcQ
+description: |
+    * Все поля, за исключением title и url, не обязательны к заполнению.
+    * Названия полей чувствительны к регистру.
+summary: |
+    "Never Gonna Give You Up" is a 1987 song performed by British singer Rick Astley.
+language: English
+date: 1987-08-03
+speakers:
+    - Rick Astley
+tags:
+    - Never
+    - Gonna
+    - Give
+    - You
+    - Up
