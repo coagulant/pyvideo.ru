@@ -26,20 +26,6 @@ class EmbedCommandTestCase(test.TestCase):
         call_command('embed')
         self.assertEqual(Video.objects.get(pk=video.pk).embed, 'foo')
 
-    @patch.object(Embedly, 'oembed')
-    def test_draft_video_become_live_when_embedded(self, mock):
-        mock.return_value = Url(data={'type': 'video', 'html': 'foo'})
-
-        attrs = {
-            'title': 'Foo Video',
-            'state': Video.STATE_DRAFT,
-            'source_url': 'http://example.org/',
-        }
-        video = self.test_category.videos.create(**attrs)
-
-        call_command('embed')
-
-        self.assertEqual(Video.objects.get(pk=video.pk).state, Video.STATE_LIVE)
 
     @patch.object(Embedly, 'oembed')
     def test_draft_video_with_no_source_url_is_not_processed(self, mock):
@@ -54,7 +40,6 @@ class EmbedCommandTestCase(test.TestCase):
         call_command('embed')
 
         video = Video.objects.get(pk=video.pk)
-        self.assertEqual(video.state, Video.STATE_DRAFT)
         self.assertEqual(video.embed, '')
 
     @patch.object(Embedly, 'oembed')
