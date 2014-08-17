@@ -3,17 +3,25 @@ from south.utils import datetime_utils as datetime
 from south.db import db
 from south.v2 import DataMigration
 from django.db import models
+from django.core.exceptions import ObjectDoesNotExist
+
 
 class Migration(DataMigration):
+    languages = (
+        ('English', 'en'),
+        ('Russian', 'ru'),
+    )
 
     def forwards(self, orm):
-        orm['videos.Language'].objects.bulk_create([
-            orm['videos.Language'](name='English', iso639_1='en'),
-            orm['videos.Language'](name='Russian', iso639_1='ru'),
-        ])
+        for name, iso639_1 in self.languages:
+            try:
+                orm['videos.Language'].objects.get(name=name)
+            except ObjectDoesNotExist:
+                orm['videos.Language'].objects.create(name=name, iso639_1=iso639_1)
 
     def backwards(self, orm):
-        orm['videos.Language'].objects.filter(name__in=['English', 'Russian']).delete()
+        names = map(lambda lang: lang[0], self.languages)
+        orm['videos.Language'].objects.filter(name__in=names).delete()
 
     models = {
         'videos.category': {
