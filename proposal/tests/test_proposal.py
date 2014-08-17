@@ -19,12 +19,6 @@ except AttributeError:
 class TestCase(test.TestCase):
     test_path = force_path(os.path.abspath(os.path.dirname(__file__))) / 'test_proposal'
 
-    def setUp(self):
-        Language.objects.bulk_create([
-            Language(iso639_1='ru', name='Russian'),
-            Language(iso639_1='en', name='English'),
-        ])
-
     @staticmethod
     def save_videos(path):
         for video in videos(path):

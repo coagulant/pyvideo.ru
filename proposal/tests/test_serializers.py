@@ -241,10 +241,6 @@ class CategorySlugTestCase(test.TestCase):
 class VideoSerializerKnownValues(test.TestCase):
 
     def setUp(self):
-        Language.objects.bulk_create([
-            Language(iso639_1='ru', name='Russian'),
-            Language(iso639_1='en', name='English'),
-        ])
         self.category = Category.objects.create(title='Baz')
 
     def test_good_values(self):
@@ -302,10 +298,6 @@ class VideoSerializerKnownValues(test.TestCase):
 class VideoSerializerTestCase(test.TestCase):
 
     def setUp(self):
-        Language.objects.bulk_create([
-            Language(iso639_1='ru', name='Russian'),
-            Language(iso639_1='en', name='English'),
-        ])
         self.test_category = Category.objects.create(title='Foo')
 
     def test_video_titles_are_case_insensitive(self):
