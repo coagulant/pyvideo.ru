@@ -34,6 +34,5 @@ class Command(BaseCommand):
                 continue
             video.embed = data['html']
             video.thumbnail_url = data.get('thumbnail_url', None)
-            video.state = Video.STATE_LIVE
             video.save()
             self.stdout.write(u'Updated %s' % video.title)
