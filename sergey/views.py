@@ -38,8 +38,9 @@ def search(request):
     facet_counts = {}
     if q or cat_filter or tag_filter:
         qs = SearchQuerySet()
-        qs = qs.filter(content=q)
-        qs = qs.filter_or(speakers__startswith=q.lower())
+        if q:
+            qs = qs.filter(content=q)
+            qs = qs.filter_or(speakers__startswith=q.lower())
 
         if cat_filter:
             # TODO: This doesn't work quite right. It should filter

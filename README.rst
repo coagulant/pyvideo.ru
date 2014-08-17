@@ -3,7 +3,9 @@ Python videos in Russian
 
 Sources of http://pyvideo.ru
 
-To add a video, create an issue in `project tracker`_.
+To add a video, create an pull request in `project tracker`_.
+
+Main app in named after Sergey Eisenstein
 
 Contributing
 ------------
