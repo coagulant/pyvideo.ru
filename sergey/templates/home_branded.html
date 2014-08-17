@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 {% endcomment %}
-{% load sergey %}
+{% load sergey static %}
 
 {% block content %}
     {% block contenthero %}
@@ -28,8 +28,8 @@
                 В основном на <strong>русском языке</strong>, но для PyConRU и PyConUA сделано исключение.
             </p>
             <p>
-                Уже собрали {{ video_count }} видео, <a href="https://github.com/coagulant/pyvideo.ru/issues">присылайте
-                ещё</a>.<br>
+                Уже собрали {{ video_count }} видео,
+                <a href="https://github.com/coagulant/pyvideo.ru/issues">присылайте ещё</a>.<br>
             </p>
         </div>
     {% endblock %}
@@ -83,4 +83,35 @@
             </p>
         </div>
     </div>
+    <div class="row-fluid">
+        <div class="span12 text-center" id="hell"></div>
+    </div>
+{% endblock %}
+
+{% block site_js %}
+    {{ block.super }}
+        <script type="text/javascript" src="{% static 'js/d3-3.4.11.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/d3.layout.cloud.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/tagcloud.js' %}"></script>
+        <script>
+            var TAGS = [
+            {% for tag in tags %}
+                {text: '{{ tag }}',
+                 size: 1.5 * getSize({{ tag.num_videos }}),
+                 link: '/search/?tag={{ tag|lower }}'},
+            {% endfor %}
+            ];
+
+            var width = $('#content').width() * 0.8;
+            var height = 300;
+
+            d3.layout.cloud().size([width, height])
+              .words(TAGS)
+              .padding(5)
+              .rotate(function() { return ~~(Math.random() * 2) * 90; })
+              .font("Impact")
+              .fontSize(function(d) { return d.size; })
+              .on("end", draw)
+              .start();
+        </script>
 {% endblock %}
