@@ -44,17 +44,34 @@
     </div>
 
     <div class="row-fluid">
-        {% if query %}
+        {% if query or tag or category %}
             {% if page %}
                 <div class="span3">
                     <div>
                         {% if facet_counts %}
                             <p class="lead">События</p>
                             <ul class="unstyled">
+                                <li class="category">
+                                    <a href="?q={{ query }}">Любое</a>
+                                </li>
                                 {% for title, count in facet_counts.category %}
                                     <li class="category">
                                         <span class="category__counter badge pull-right">{{ count }}</span>
                                         <a href="{{ request.build_absolute_uri }}&amp;category={{ title }}">{{ title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+
+                            <p class="lead">Теги</p>
+                            <ul class="unstyled">
+                                <li class="category">
+                                    <span class="category__counter badge pull-right"></span>
+                                    <a href="{{ request.build_absolute_uri }}">Любые</a>
+                                </li>
+                                {% for title, count in facet_counts.tag %}
+                                    <li class="category">
+                                        <span class="category__counter badge pull-right">{{ count }}</span>
+                                        <a href="{{ request.build_absolute_uri }}&amp;tag={{ title }}">{{ title }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>
