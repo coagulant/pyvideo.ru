@@ -654,7 +654,7 @@ class VideoSerializerTestCase(test.TestCase):
         self.assertEqual(video.embed, '<iframe src="http://example.org/"></iframe>')
         self.assertEqual(video.thumbnail_url, 'http://example.org/thumnail.png')
 
-    def test_new_video_is_saved_as_draft(self):
+    def test_new_video_is_saved_as_live(self):
         data = {
             'category': self.test_category.pk,
             'title': 'Foo',
@@ -667,9 +667,9 @@ class VideoSerializerTestCase(test.TestCase):
 
         video = Video.objects.get(pk=serializer.object.pk)
 
-        self.assertEqual(video.state, Video.STATE_DRAFT)
+        self.assertEqual(video.state, Video.STATE_LIVE)
 
-    def test_updating_existing_video_url_makes_the_video_a_draft(self):
+    def test_updating_existing_video_url_keeps_its_state_unchanged(self):
         attrs = {
             'category': self.test_category,
             'title': 'Foo',
@@ -694,8 +694,7 @@ class VideoSerializerTestCase(test.TestCase):
 
         video = Video.objects.get(pk=video.pk)
         self.assertEqual(video.embed, '')
-        # the video is now draft
-        self.assertEqual(video.state, Video.STATE_DRAFT)
+        self.assertEqual(video.state, Video.STATE_LIVE)
 
 
 class OptionalVideoLanguageTestCase(test.TestCase):

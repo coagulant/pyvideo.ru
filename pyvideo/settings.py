@@ -68,3 +68,5 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     )
 }
+
+EMBEDLY_TIMEOUT = 1.5  # seconds
