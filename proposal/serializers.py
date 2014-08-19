@@ -111,6 +111,9 @@ class VideoSerializer(serializers.ModelSerializer):
                 name=name, iso639_1=iso639_1
             )
 
+        # proposed videos are live
+        instance.state = Video.STATE_LIVE
+
         return super(VideoSerializer, self).full_clean(instance)
 
     def restore_object(self, attrs, instance=None):
