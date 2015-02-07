@@ -1,0 +1,12 @@
+title: Введение в aiohttp
+url: http://www.youtube.com/watch?v=F6sa6G0lJCk
+description: |
+    aiohttp -- это HTTP Web сервер и клиент для asyncio (PEP-3156).
+    Лекция даёт общее представление о библиотеке, показывает как выполнять клиентские запросы
+    и строить Web сервер с поточной выдачей и Web-сокетами.
+date: 2015-01-31
+speakers:
+    - Андрей Светлов
+tags:
+    - Python 3
+    - Асинхронное

@@ -1,0 +1,18 @@
+title: Python's (future) type annotation system(s)
+url: http://www.youtube.com/watch?v=8QIYPws-51A
+description: |
+    Python is a dynamically (but strongly, for some value of "strongly") typed programming language.
+    Notwithstanding its dynamism, checking types -- or other behaviors -- of variables
+    has always been possible in Python code, and a steady stream of users have had a desire to do so.
+
+    At a conceptual level, enforcing a type is a subset of enforcing an invariant on a variable,
+    and the broader demand for design by contract has been a recurrent theme in Python discussions.
+    PEP 316 addressed this desire (but was not accepted) a decade ago,
+    as did the long defunct library PyDBC. Currently maintained, however, is the PyContracts library,
+    which allows documenting and enforcing both types narrowly, and predicates of variables more broadly. I myself wrote a simple recipe for basic type checking using PEP 3107 annotations at the Python Cookbook: Type checking using Python 3.x annotations (http://code.activestate.com/recipes/578528-type-checking-using-python-3x-annotations/).
+date: 2015-01-31
+speakers:
+    - David Mertz
+tags:
+    - Python 3
+    - Фишки языка
