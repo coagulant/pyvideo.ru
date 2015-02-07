@@ -4,7 +4,6 @@ description: |
     Python is a dynamically (but strongly, for some value of "strongly") typed programming language.
     Notwithstanding its dynamism, checking types -- or other behaviors -- of variables
     has always been possible in Python code, and a steady stream of users have had a desire to do so.
-
     At a conceptual level, enforcing a type is a subset of enforcing an invariant on a variable,
     and the broader demand for design by contract has been a recurrent theme in Python discussions.
     PEP 316 addressed this desire (but was not accepted) a decade ago,
