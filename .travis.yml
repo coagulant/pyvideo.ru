@@ -12,10 +12,12 @@ after_success:
   - coveralls
 deploy:
   provider: heroku
-  app: pyvideoru
   api_key:
-      secure: QKzWENSRPE7fkr6EP4/alvo8ZOvV5OQZ7yq0BcGkpH9MpiELiaTnzp1hdaBEBbAyw5AvXO/JN1cECReUGJ94b4jebpAuxoTCOZEjiPSqvGgcGhu9Ny7udKQgr1IbFyVRlFPRjzFwmRwHotkMtZRjzKFgTW7AcIeOfliCkEjBlIQ=
+    secure: hljuMQzAgAqEJgLbrBFGVbdLuvfgeNi8ke4BYygB2jA2eCW8GnnI0EhsEnZI1VobOOi1M3DYzG40XXbZmNxA2hslmQvwnMLmyt+Cc+nbDIUOsNasoYs1lIhytVckUqYgrrojbM4iSVm4YsGye76TTDa+CI6w7GqBm/B57KSSCqo=
+  app: pyvideoru
+  on:
+    repo: coagulant/pyvideo.ru
   run:
-    - "python manage.py migrate"
+    - "python manage.py migrate --noinput"
     - "python manage.py review"
     - restart
