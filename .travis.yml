@@ -20,4 +20,5 @@ deploy:
   run:
     - "python manage.py migrate --noinput"
     - "python manage.py review"
+    - "python manage.py embed"
     - restart
