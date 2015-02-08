@@ -1,0 +1,13 @@
+title: Transducers in Python
+url: http://www.youtube.com/watch?v=z_cmmbRQXh4
+description: |
+    Understanding Transducers Through Python – Transducers are a new and interesting
+    functional programming concept that comes from the world of Clojure.
+    In this talk we’ll learn about transducers by seeing how to implement them in Python.
+    By using transducers to build familiar functional programming elements like map and filter,
+    we’ll see that transducers are actually simple, elegant, and quite powerful.
+date: 2015-01-31
+speakers:
+    - Austin Bingham
+tags:
+    - Методология
