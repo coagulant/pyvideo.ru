@@ -1,0 +1,11 @@
+title: Redis as main database
+url: https://www.youtube.com/watch?v=u8D-Cpvc8rU
+description: |
+    How to build a service using Redis as main database with
+    python. Sync and async access to data form python, how to
+    build database indexes and effectively invalidate cache.
+date: 2014-11-01
+speakers:
+    - Maksym Klymyshyn
+tags:
+    - Базы данных

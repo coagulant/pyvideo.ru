@@ -1,0 +1,17 @@
+title: How we are recognizing shredded documents of Yanukovich and Kurchenko with Python, OpenCV and others
+url: https://www.youtube.com/watch?v=QT7Gy4vCWms
+description: |
+    Рассказ о том, как мы группой волонтеров при помощи Python,
+    crowdsourcing, open source и OpenCV пытаемся решить задачу
+    по сбору самого большого паззла в мире: 50 мешков документов
+    олигарха Курченко, пропущенных через шредеры. Срывы
+    покровов, развенчания популярных заблуждений, секреты
+    победителей Darpa Shredder Challenge. Наш подход: общая
+    идея, методика решения, технические средства, идеи
+    дальнейшего развития. А также пять минут безудержного хайра
+    в open source проект.
+date: 2014-11-01
+speakers:
+    - Dmitry Chaplinsky
+tags:
+    - Сообщество

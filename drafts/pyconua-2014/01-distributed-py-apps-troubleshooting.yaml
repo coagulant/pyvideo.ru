@@ -1,0 +1,15 @@
+title: Distributed Py Apps Troubleshooting
+url: https://www.youtube.com/watch?v=eN8p_c14UsE
+description: |
+    As developer I am interested in debugging my application.
+    The interest becomes even huge when the app is big and
+    distributed and I am responsible for its smooth production.
+    The biggest distributed Python app I know to the date is
+    OpenStack. I have been collecting details of Support, DevOps
+    and Devs work in the ecosystem. This provides an excellent
+    opportunity to share the findings with YOU.
+date: 2014-11-01
+speakers:
+    - Serge Kovaleff
+tags:
+    - Архитектура

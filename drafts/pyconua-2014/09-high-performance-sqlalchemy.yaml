@@ -1,0 +1,24 @@
+title: High-performance SQLAlchemy
+url: https://www.youtube.com/watch?v=aT9qUUgAFJY
+description: |
+    This talk is about using SQLAlchemy in an unusual way in
+    high-load application. It is about a library called
+    SQLConstruct, which was written in order to improve
+    performance and simplicity of our application.  <i>SQL
+    databases behave less and less like object collections the
+    more size and performance start to matter; object
+    collections behave less and less like tables and rows the
+    more abstraction starts to matter. SQLAlchemy aims to
+    accommodate both of these principles.</i> – one of the
+    principles of the SQLAlchemy's philosophy.  Thanks to this
+    principle, SQLAlchemy has not one but two levels of
+    abstraction: ORM and Core SQL. SQLConstruct lies between
+    them. It tries to save conveniences, which ORM gives to us,
+    and trying to accomplish speed and flexibility of the Core
+    SQL.
+date: 2014-11-01
+speakers:
+    - Vladimir Magamedov
+tags:
+    - Базы данных
+    - Производительность

@@ -1,0 +1,13 @@
+title: Logging in Python. HOWTO.
+url: https://www.youtube.com/watch?v=7UcKIUn4PKo
+description: |
+    * Why everyone need logging?
+    * Python logging module.
+    * How to make web-application logging right way.
+    * Sentry as advanced logging system.
+    * Example how to make correct logging in Django/Flask/Bottle projects.
+date: 2014-11-02
+speakers:
+    - Mikhail Behersky
+tags:
+    - Best practice

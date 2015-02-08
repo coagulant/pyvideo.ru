@@ -1,0 +1,13 @@
+title: Using mongo db in python apps.
+url: https://www.youtube.com/watch?v=jp2nULAxds0
+description: |
+    * Mongo DB vs. relational DBs (why an when use mongo).
+    * Pymongo module and its' usage.
+    * ORM's for mongo.
+    * Integration with Django framework.
+    * Live example of creating Django/Mongo web-app.
+date: 2014-11-01
+speakers:
+    - Vladislav Zaika
+tags:
+    - Базы данных

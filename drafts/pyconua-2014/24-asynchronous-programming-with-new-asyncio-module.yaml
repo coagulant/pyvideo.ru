@@ -1,0 +1,19 @@
+title: Asynchronous programming with new asyncio module.
+url: https://www.youtube.com/watch?v=K0KOvAc201M
+description: |
+    Asynchronous (non-blocking) programming has become very
+    important in last few years. Today there are different libs
+    and frameworks allowing us to write async code. This talk
+    will introduce you new python asyncio module and its
+    refering PEP-3156 specifcation. The talk consist of two
+    parts:
+        1. Introduction to asyncio -- will explain what
+    asyncio is and how it differs    from other libs/frameworks;
+        2. An advanced asyncio -- will explain in deep how to start
+    using it,    its "best practices", common mistakes and
+    constraints;
+date: 2014-11-01
+speakers:
+    - Alexei Popravka
+tags:
+    - Асинхронное

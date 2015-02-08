@@ -1,0 +1,15 @@
+title: More than a template engine
+url: https://www.youtube.com/watch?v=cfAyi4qLFBA
+description: |
+    Every decent CMS must be able to have different themes. What
+    if we need to outsource themes creation while be sure that
+    all of the client-side code works as expected and have
+    really diverse designs? I'm going to tell you about our
+    solution, which extends standard template engines and gives
+    us ability to easily configure what should be rendered on a
+    page. And some other applications of this principle.
+date: 2014-11-02
+speakers:
+    - Boryslav Larin
+tags:
+    - Веб-разработка

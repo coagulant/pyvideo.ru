@@ -1,0 +1,16 @@
+title: Rethinking packaging, development and deployment
+url: https://www.youtube.com/watch?v=MODZCTk8iK0
+description: |
+    In Python, we're trying to solve packaging problems in our
+    own domain, but maybe someone else already solved most our
+    problems.  In the talk I'll show how I develop and deploy
+    Python projects that can be easily mixed with non-Python
+    dependencies.  http://nixos.org/nix/ will be demonstrated to
+    replace technologies in our stack: pip, virtualenv,
+    buildout, ansible, jenkins.
+date: 2014-11-01
+language: English
+speakers:
+    - Domen Kožar
+tags:
+    - DevOps
