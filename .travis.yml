@@ -21,4 +21,5 @@ deploy:
     - "python manage.py migrate --noinput"
     - "python manage.py review"
     - "python manage.py embed"
+    - "python manage.py update_index"
     - restart
