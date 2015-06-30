@@ -1,0 +1,15 @@
+title: Нагрузочное тестирование с помощью locust.io
+url: https://youtu.be/kmoQnMD8xvU
+description: |
+    На примере дейтинга расскажу на чем не только модно, но и удобно тестировать высоконагруженные проекты с нетривиальными сценариями взаимодействия с пользователями.
+    И все это не отрываясь от любимого питона. 
+    
+    https://moscowdjango.ru/meetup/27/load-testing-locustio/
+    
+    https://speakerdeck.com/moscowdjango/naghruzochnoie-tiestirovaniie-s-pomoshch-iu-locust-dot-io
+date: 2015-05-25
+speakers:
+    - Алексей Стрелков
+tags:
+    - Веб-разработка
+    - Тестирование
