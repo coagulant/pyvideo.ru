@@ -1,0 +1,13 @@
+title: Потрошим змею: dis module
+url: https://youtu.be/cNJjblq3N0A
+description: |
+    Почему некоторые операции быстрее других - ответы на очевидные вопросы с использованием timeit и dis. 
+    
+    https://moscowdjango.ru/meetup/28/dis-module/
+    
+    https://speakerdeck.com/moscowdjango/potroshim-zmieiu-dis-module
+date: 2015-06-24
+speakers:
+    - Юлия Селютина
+tags:
+    - Производительность
