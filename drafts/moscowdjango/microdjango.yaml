@@ -1,0 +1,16 @@
+title: Micro(Lightweight) Django
+url: https://youtu.be/aLMsldbD7H0
+description: |
+    Мы привыкли к тому, что джанга это фулстек фреймворк, который диктует нам достаточно четкую проектную структуру, однако мы же всё же попробуем разрушить этот миф.
+    Поиздеваемся над Django?
+    Превратим его во бутылеподобный фреймворк (Flask, Bottle)?
+    Даешь велосипеды!!!
+    
+    https://moscowdjango.ru/meetup/27/microdjango/
+    
+    https://speakerdeck.com/moscowdjango/micro-lightweight-django
+date: 2015-05-25
+speakers:
+    - Дмитрий Крюков
+tags:
+    - Веб-разработка
