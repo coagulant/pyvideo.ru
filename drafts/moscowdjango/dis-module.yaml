@@ -1,4 +1,5 @@
-title: Потрошим змею: dis module
+title: |
+    Потрошим змею: dis module
 url: https://youtu.be/cNJjblq3N0A
 description: |
     Почему некоторые операции быстрее других - ответы на очевидные вопросы с использованием timeit и dis. 
