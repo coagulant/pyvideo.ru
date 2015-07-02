@@ -1,0 +1,14 @@
+title: Обзор и сравнение методов реализации REST API в django
+url: https://youtu.be/nEl2ymv2QnA
+description: |
+    Посмотрим на различные библиотеки и способы реализации API, постараемся их сравнить.
+    
+    https://moscowdjango.ru/meetup/28/api-frameworks/
+    
+    https://speakerdeck.com/moscowdjango/obzor-i-sravnieniie-mietodov-riealizatsii-rest-api-v-django
+date: 2015-06-24
+speakers:
+    - Артем Безукладичный
+tags:
+    - Веб-разработка
+    - API

@@ -1,0 +1,17 @@
+title: Генерация литературных текстов
+url: https://youtu.be/1VzgZvkspJ4
+description: |
+    Бывают такие ситуации, когда работа редактора стоит дороже работы разработчика. 
+    Например, когда надо описать около ста тысяч объектов. 
+    Мы нашли выход из данной ситуации. 
+    Проблемы машинной генерации “литературных” текстов, СЕО и все прочее. 
+    
+    https://moscowdjango.ru/meetup/28/literate-text-gen/
+    
+    https://speakerdeck.com/moscowdjango/gienieratsiia-litieraturnykh-tiekstov
+date: 2015-06-24
+speakers:
+    - Максим Шаламов
+tags:
+    - Веб-разработка
+    - Методология
