@@ -12,3 +12,4 @@ Lead:
 Contributors:
 
 * Sergei Khoroshilov
+* Sasha Medvedev
