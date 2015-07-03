@@ -1,0 +1,17 @@
+title: Flask API backend
+url: https://youtu.be/3Iw73IF_6OU
+description: |
+    Запись производилась с экрана ноутбука и микрофона который был у докладчика, поэтому возможны небольшие проблемы со звуком.
+    
+    http://www.meetup.com/uapycon/events/221861247/
+    
+    https://speakerdeck.com/xen/flask-api-backend
+    
+    https://github.com/xen/flask-project-template
+date: 2015-04-23
+speakers:
+    - Mikhail Kashkin
+tags:
+    - Веб-разработка
+    - API
+    - Архитектура
