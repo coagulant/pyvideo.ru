@@ -1,0 +1,12 @@
+title: PEP 492
+url: https://youtu.be/C6OwviRWgG4
+description: |
+    Andrew Svetlov talking about recently proposed PEP 492.
+date: 2015-04-25
+speakers:
+    - Андрей Светлов
+tags:
+    - Веб-разработка
+    - Python 3
+    - Асинхронное
+    - Фишки языка
