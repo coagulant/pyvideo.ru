@@ -1,0 +1,12 @@
+title: Vagga - a containerisation tool without daemons
+url: https://youtu.be/MhVRSIxNgPE
+description: |
+    Paul Colomiets talking about Vagga - a containerisation tool without daemons.
+    
+    https://github.com/tailhook/vagga
+date: 2015-04-25
+speakers:
+    - Paul Colomiets
+tags:
+    - Lightning talk
+    - Инструменты
