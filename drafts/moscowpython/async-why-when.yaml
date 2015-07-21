@@ -1,0 +1,13 @@
+title: Async: why and when? 
+url: https://youtu.be/ZFoL50zZZuA
+description: |
+    Сравнительный анализ данных фреймворков: asyncio, gevent, twisted, tornado.
+    
+    http://habrahabr.ru/company/rambler-co/blog/258371/
+date: 2015-05-28
+speakers:
+    - Алексей Гречишкин
+    - Злата Обуховская
+tags:
+    - Асинхронное
+    - Python 3
