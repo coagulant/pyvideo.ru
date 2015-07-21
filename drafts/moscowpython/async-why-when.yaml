@@ -1,4 +1,5 @@
-title: Async: why and when? 
+title: |
+    Async: why and when? 
 url: https://youtu.be/ZFoL50zZZuA
 description: |
     Сравнительный анализ данных фреймворков: asyncio, gevent, twisted, tornado.
