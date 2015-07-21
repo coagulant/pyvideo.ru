@@ -1,0 +1,10 @@
+title: Обзор положения дел в asyncio
+url: https://youtu.be/9EftQMnuhvU
+description: |
+    http://habrahabr.ru/company/rambler-co/blog/258371/
+date: 2015-05-28
+speakers:
+    - Андрей Светлов
+tags:
+    - Асинхронное
+    - Python 3
