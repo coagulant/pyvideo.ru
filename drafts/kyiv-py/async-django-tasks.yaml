@@ -1,0 +1,14 @@
+title: |
+    Async tasks in Django
+url: https://youtu.be/VlZIIrN_fSo
+description: |
+    Talk from #Kyivpy 15 ("Special Django birthday edition")
+    
+    http://www.meetup.com/uapycon/events/222983377/
+date: 2015-07-11
+speakers:
+    - Kyrylo Perevozchikov
+tags:
+    - Веб-разработка
+    - Сообщество
+    - Асинхронное
