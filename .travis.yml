@@ -13,7 +13,7 @@ after_success:
 deploy:
   provider: heroku
   api_key:
-    secure: ZD5BgojYQUWqegRjdIDNy/VaWIHJTLSbWiBCqYZxH+ZGJueBUOGdJEYCAGkKxUotBe4XaowX/y7/MROCYMQ0J2vr02T5Gyj9TZKtDfbMZ/0OjB7jHFKn0RC1pej8yt4ruslF1xqL0YwAZhD5DO6QSm5c0L5HK6Is9dlgtIcuM/Y=
+    secure: KoMAvcHh9CEbNvDjdxlcfRoX1RJMNI9ZcnpcQE7YMfu170/zCKrs2CSX6GZSjiggOYI8gqkTdXZUlJciKn6sD2qmTA6RTaYdElxInmHFnV9ZHVxyNaM5x7cmA/8pW9MPulFcPRbP9jpY7fs+ogboF/SIUdZnYl3JFJwYNrSJT5E=
   app: pyvideoru
   on:
     repo: coagulant/pyvideo.ru
