@@ -1,0 +1,18 @@
+title: |
+    Pip install — почему так медленно?
+url: https://events.yandex.ru/lib/talks/3070/
+description: |
+    В экосистеме Python есть хороший менеджер пакетов — pip. 
+    Но из-за чего он работает так медленно? 
+    Я расскажу как выглядит конвейер работы pip и на каких этапах происходят задержки. 
+    Какие есть способы ускорения установки пакетов — wheel, pip-accel и другие. 
+    Как жить, когда в проекте много зависимостей и venv собирается очень долго.
+    
+    https://yadi.sk/i/rx9twNzEiqwhN
+    
+    https://events.yandex.ru/events/meetings/02-september-2015/
+date: 2015-09-02
+speakers:
+    - Александр Кошелев
+tags:
+    - Инструменты
