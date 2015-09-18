@@ -1,0 +1,15 @@
+title: "Commit ускоривший Python 2.7.11 на 30%, новое в Python 3.5"
+url: http://www.youtube.com/watch?v=l3PuBXqk2J4
+description: |
+	В мини-докладе пойдёт речь о коммите, ускорившим Python 2.7.11 на 30%, а также о некоторых нововведениях в Python 3.5: 
+	PEP 448 — Дополнительное обобщение распаковки, 
+	PEP 484 — Новый стандарт для аннотирования типов,
+	PEP 492 — Сопрограммы с использованием async и await.
+date: 2015-09-13
+speakers:
+    - Александр Сапронов
+tags:
+    - Python 3
+    - Python 2
+    - await
+    - async
