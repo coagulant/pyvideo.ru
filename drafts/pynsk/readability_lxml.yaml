@@ -1,0 +1,9 @@
+title: "Получаем текст веб-страниц из Python"
+url: http://www.youtube.com/watch?v=W3YjsKnAfXA
+description: |
+    Мы рассмотрим python-библиотеку под названием readability-lxml (https://github.com/buriy/python-readability) , её применение и механизм работы для задачи извлечения текстов новостных страниц.
+date: 2015-10-11
+speakers:
+    - Юрий Бабуров
+tags:
+    - парсинг
