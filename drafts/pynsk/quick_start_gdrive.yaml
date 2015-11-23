@@ -1,0 +1,12 @@
+title: "Быстрый старт в gDrive API"
+url: https://www.youtube.com/watch?v=k5kWV-Rk-fo
+description: |
+    Краткий обзор разных вариантов использования gDrive API, также вы узнаете как получить доступ к gDrive API, конечно же с примерами подключения, авторизации и выполнения различных запросов на питоне.
+date: 2015-11-15
+speakers:
+    - Богомолов Иван
+tags:
+    - google drive
+    - google api
+    - api
+    - gdrive

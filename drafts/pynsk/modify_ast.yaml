@@ -1,0 +1,10 @@
+title: "«Модифицируй это!» или «Больше магии Python с помощью изменения AST»"
+url: https://www.youtube.com/watch?v=Zv6yT-ytIvg
+description: |
+    Мы узнаем, что из себя представляет дерево синтаксического разбора (AST, Abstract Syntax Tree) в языке Python и какие магические возможности можно получить с помощью модификации AST.
+date: 2015-11-15
+speakers:
+    - Александр Маршалов
+tags:
+    - ast
+    - Abstract Syntax Tree
