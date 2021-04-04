@@ -8,7 +8,7 @@ bleach==1.4
 dj-database-url==0.3.0
 django-haystack==2.1.0
 django-suit==0.2.1
-djangorestframework==2.3.10
+djangorestframework==3.11.2
 eadred==0.3
 fancy-tag==0.2.0
 gunicorn==0.17.4
