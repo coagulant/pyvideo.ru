@@ -1,4 +1,4 @@
-Django==1.6.5
+Django==3.2.15
 Embedly==0.4.4
 Markdown==2.4.1
 South==0.8.4
