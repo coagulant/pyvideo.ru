@@ -1,4 +1,4 @@
-Django==1.6.5
+Django==3.2.15
 Embedly==0.4.4
 Markdown==2.4.1
 South==0.8.4
@@ -18,7 +18,7 @@ psycopg2==2.5
 pyelasticsearch==0.5
 python-slugify==0.0.7
 raven==3.3.7
-requests==2.3.0
+requests==2.20
 -e git+https://github.com/willkg/richard@1e06ecef3a1d831b3e05a65de42ecbb3809021bf#egg=richard
 simplejson==3.5.3
 six==1.7.3
